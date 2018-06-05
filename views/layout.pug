@@ -1,7 +1,31 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+    head
+        title= title
+        link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+        link(rel='stylesheet', href='/css/lib/materialize.min.css')
+        link(rel='stylesheet', href='/css/style.css')
+        link(rel='stylesheet', href='/css/layout.css')
+
+
+        script(src="/js/lib/materialize.min.js", type="text/javascript")
+        script(src="/js/lib/jquery-3.3.1.min.js", type="text/javascript")
+
+        script(src="/js/layout.js", type="text/javascript")
+
+
+    body#home-layout
+        nav.nav-top.center-align
+            div.container
+                div.nav-wrapper
+                    div.col.s12
+                        a(href="/importation").breadcrumb IMPORTATION
+                        a(href="/selection").breadcrumb SELECTION
+                        a(href="/modification").breadcrumb MODIFICATION
+                        a(href="/exportation").breadcrumb EXPORTATION
+
     block content
+    footer.page-footer.color-footer
+        div.container © Copyright 2018 projet VASCO
+
+

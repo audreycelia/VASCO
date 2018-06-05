@@ -1,0 +1,17 @@
+extends layout
+
+block content
+
+    div#importation
+        div.container
+            h1 Importation des données
+            div.row
+                div.col.s4
+                    form(action="#")
+                        div.file-field.input-field
+                            div.btn
+                                span File
+                                input(type="file")
+                            div.file-path-wrapper
+                            input.file-path.validate(type="text")
+
