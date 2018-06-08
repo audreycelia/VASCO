@@ -31,6 +31,7 @@ router.get('/importation', function (req, res, next) {
 /* POST file importation. */
 router.post('/importation', upload.single('file'),function (req, res, next) {
     var filename=req.body.importfile;
+
     res.redirect('/selection');
 });
 
