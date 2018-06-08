@@ -7,11 +7,14 @@ block content
             h1 Importation des données
             div.row
                 div.col.s4
-                    form(action="#")
+                    form#import-form(action="/importation",method="post", enctype="multipart/form-data")
                         div.file-field.input-field
                             div.btn
                                 span File
-                                input(type="file")
+                                input(type="file", name="file")
                             div.file-path-wrapper
-                            input.file-path.validate(type="text")
+                            input.file-path.validate(name="importfile",type="text")
 
+                        div.col.s12
+                            button.btn.waves-effect.waves-light.right(type="submit") Suivant
+                                i.material-icons.right send

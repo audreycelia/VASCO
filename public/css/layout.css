@@ -1,3 +1,5 @@
+
+/*----------------------------FOOTER----------------------------*/
 footer {
     position:absolute;
     bottom:0;
@@ -5,26 +7,84 @@ footer {
     height:60px;
 }
 
+/*https://flatuicolors.com/palette/us
+https://flatuicolors.com/palette/au*/
 .color-footer{
-    background-color: #6C7A89;
+    /*background-color: #6C7A89;*/
+    background-color: #535c68;
+    color: #f6e58d;
+}
+
+/*----------------------------NAV----------------------------*/
+
+.mobile-nav-color{
+    background-color: #535c68;
 }
 
 .nav-top{
     width: 100%;
     top: 0;
-    background-color: #6C7A89;
+    /*background-color: #6C7A89;*/
+    background-color: #535c68;
 }
 
-.breadcrumb{
-    color:white;
+.nav-size{
+    font-size: 18px !important;
 }
 
-/*change the space*/
-.breadcrumb:before {
-    margin: 0 70px 0 70px;
-    color: white;
+/*****ARROWS*****/
+
+/*responsive*/
+.arrows { white-space: normal; }
+/*add the arrow in horizontal*/
+.arrows li {
+    display: inline-block;
+    line-height: 26px;
+    margin: 40px 9px 0 -10px;
+    padding: 0 40px;
+    position: relative;
 }
 
+/*add the arrow*/
+.arrows li::before,
+.arrows li::after {
+    border-right: 3px solid #535c68;
+    content: '';
+    display: block;
+    height: 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    transform: skewX(45deg);
+}
+
+/*display the bottom line*/
+.arrows li::after {
+    bottom: 0;
+    top: auto;
+    transform: skewX(-45deg);
+}
+
+
+/*do not display the last arrow*/
+.arrows li:last-of-type::before,
+.arrows li:last-of-type::after {
+    display: none;
+}
+
+/*size*/
+.arrows li a {
+    font: bold 24px Sans-Serif;
+    letter-spacing: 1px;
+}
+
+/*color*/
+.arrows a { color: #535c68; }
+
+
+/*****Change color of the current state of the page*****/
 .current-state{
-    color: #3D464E;
+    color: #ffbe76 !important;
 }

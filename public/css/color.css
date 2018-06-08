@@ -1,0 +1,30 @@
+
+/*Button color*/
+.btn{
+    background-color: #95afc0;
+    color: black;
+}
+
+.btn:hover{
+    background-color:#95afc0;
+    color: black;
+}
+
+.btn:focus{
+    background-color: #95afc0;
+}
+
+/*textarea color*/
+textarea.materialize-textarea:focus:not([readonly]){
+    border-bottom:1px solid black;
+    box-shadow:0 1px 0 0 black;
+}
+
+/*placeholder color*/
+textarea.materialize-textarea:focus:not([readonly])+label{
+    color:black;
+}
+
+.personnal-yellow{
+    color:#f6e58d !important;
+}
