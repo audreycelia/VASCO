@@ -11,9 +11,12 @@ var storage = multer.diskStorage({
         cb(null, 'uploads');
     },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now())
+        cb(null, file.fieldname + '-' + Date.now()+ '.csv')
     }
 });
+
+var upload = multer({storage: storage});
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -28,11 +31,6 @@ router.get('/importation', function (req, res, next) {
 /* POST file importation. */
 router.post('/importation', upload.single('file'),function (req, res, next) {
     var filename=req.body.importfile;
-
-    //var data = datalib.load({file:filename});
-
-    //console.log(data);
-
     res.redirect('/selection');
 });
 
