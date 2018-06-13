@@ -1,9 +1,47 @@
 extends layout
 
+
+block extra-headers
+    script.
+
+        var VegaGraph = "#{JSON.stringify(keyGraph)}";
+        VegaGraph = JSON.parse(VegaGraph.replace(/&quot;/g,'"'));
+
+
+
+
+
 block content
 
     div#selection
         div.container
             h1 Selection de la visualisation
-            div#vis
+            div.row
+                div.col.s6
+                    div#selection-table
+                            table.highlight.responsive-table
+                                thead
+                                    tr
+                                        th Dimensions
+                                        th somme
+                                tbody
+                                    each dim in keyDim
+                                        tr
+                                            td= dim
+                div.col.s6
+                    div.row
+                        div.col.s6
+                            div#query
+                        div.col.s6
+                            div#spec
+        div.row
+            div.col.s6
+            div.col.s2
+                a.btn.waves-effect.waves-light.right(href="/importation") Retour
+                    i.material-icons.left keyboard_arrow_left
+            div.col.s2
+                a.btn.waves-effect.waves-light.right(href="/modification") Suivant
+                    i.material-icons.right keyboard_arrow_right
 
+
+    script(src="/js/selection.js", type="text/javascript")

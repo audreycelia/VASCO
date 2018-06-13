@@ -11,7 +11,7 @@ block content
                         div.file-field.input-field
                             div.btn
                                 span File
-                                input(type="file", name="file")
+                                input#importfile(type="file", name="file", accept=".csv, .json,application/json")
                             div.file-path-wrapper
                             input.file-path.validate(name="importfile",type="text")
 

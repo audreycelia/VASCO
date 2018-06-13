@@ -2,17 +2,45 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #DADFE1;
 
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
 }
 
-main {
-  flex: 1 0 auto;
+html {
+  height: 100%;
+  box-sizing: border-box;
 }
+
+
+/*----------------------------FOOTER----------------------------*/
+
+/*https://flatuicolors.com/palette/us
+https://flatuicolors.com/palette/au*/
+.color-footer{
+  /*background-color: #6C7A89;*/
+  background-color: #535c68;
+  color: #f6e58d;
+}
+
+
+footer{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+
+}
+
+
+
 
 h1{
   font-family: "Hiragino Sans";
+  font-size: 40px;
 }
 
 
