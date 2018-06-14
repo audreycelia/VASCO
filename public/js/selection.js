@@ -1,12 +1,10 @@
 $(document).ready(function () {
-
-
     vegaLite();
 
 });
 
 function vegaLite() {
-    // Assign the specification to a local variable vlSpec.
+
     // Embed the visualization in the container with id `vis`
     vegaEmbed("#vis", VegaGraph);
 
@@ -27,5 +25,12 @@ function vegaLite() {
         }
     };
 
+
+
+
     vegaEmbed("#vis2", vlSpec2);
+
 }
+
+
+

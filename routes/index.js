@@ -56,45 +56,65 @@ router.post('/importation', upload.single('file'),function (req, res, next) {
 /* GET selection. */
 router.get('/selection', async function (req, res, next) {
 
-    var opt = {};
-    var schema = cql.schema.build(csvToJson, opt);
+    // var opt = {};
+    // var schema = cql.schema.build(csvToJson, opt);
 
 
+    var headerX = await getRandomDim();
+    var headerY = await getRandomDim();
 
-    var headerX = await getDim(1);
-    var headerY = await getDim(3);
-
+    console.log( headerX);
+    console.log( headerY);
     var VegaGraph = {
-        "spec": {
-            "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-            "data": {"url": "uploads/temp.csv", "format": {type: "csv"}},
-            "mark": "?",
-            "encodings": [
-                {
-                    "channel": "x",
+        "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+        "width": 120,
+        "height": 200,
+        "data": {"url": "uploads/temp.csv", "format": {type: "csv"}},
+        "mark": "bar",
+            "encoding": {
+                "x": {
                     "field": headerX.name,
                     "type": headerX.type
-                },{
-                    "channel": "y",
+                },
+                "y": {
                     "field": headerY.name,
                     "type": headerY.type
                 }
-            ]
-        },
-        "chooseBy": "effectiveness"
+            }
     };
 
-    var output = cql.recommend(VegaGraph, schema);
-    var result = output.result; // recommendation result
 
-    var vlTree = cql.result.mapLeaves(result, function(item) {
-        return item.toSpec();
-    });
-
-
-    var topVlSpec = vlTree.items[0];
-    document.querySelector('#query').innerHTML =  JSON.stringify(VegaGraph, null, 2);
-    document.querySelector('#spec').innerHTML =  JSON.stringify(topVlSpec, null, 2);
+    // var VegaGraph = {
+    //     "spec": {
+    //         "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+    //         "data": {"url": "uploads/temp.csv", "format": {type: "csv"}},
+    //         "mark": "?",
+    //         "encodings": [
+    //             {
+    //                 "channel": "x",
+    //                 "field": headerX.name,
+    //                 "type": headerX.type
+    //             },{
+    //                 "channel": "y",
+    //                 "field": headerY.name,
+    //                 "type": headerY.type
+    //             }
+    //         ]
+    //     },
+    //     "chooseBy": "effectiveness"
+    // };
+    //
+    // var output = cql.recommend(VegaGraph, schema);
+    // var result = output.result; // recommendation result
+    //
+    // var vlTree = cql.result.mapLeaves(result, function(item) {
+    //     return item.toSpec();
+    // });
+    //
+    //
+    // var topVlSpec = vlTree.items[0];
+    // document.querySelector('#query').innerHTML =  JSON.stringify(VegaGraph, null, 2);
+    // document.querySelector('#spec').innerHTML =  JSON.stringify(topVlSpec, null, 2);
 
     var nameOfAllDim = getNameOfAllDim();
 
@@ -118,59 +138,16 @@ router.get('/exportation', function (req, res, next) {
 });
 
 
-
-function getDim(nb){
-    //put in syncron
-    return new Promise(function(resolve, reject){
-
-        //get information from the csv file
-        fs.createReadStream('./uploads/temp.csv')
-            .pipe(csv())
-            //.on('data', function (data) {
-                //console.log('Name: %s Calories: %s ',data.Manufacturer, data.Calories)
-                //console.log( data)
-           // })
-
-            //get the dimension (header)
-            .on('headers', function (headerList) {
-                //console.log('List of all headers: %s', headerList)
-                //Get the first header
-                //console.log('First header: %s', headerList[nb])
-
-                var val = getOneData(nb);
-
-                if (isNaN(val)){
-                    var type = "ordinal";
-                } else
-                    var type = "quantitative";
-
-                //tab
-                var resultat = {
-                    name:headerList[nb],
-                    type: type
-                }
-                resolve(resultat);
-            })
-    });
-
-
-
-
-}
-
 //take only one data in my csv file
-function getOneData(col) {
-
+function getOneData(randNum) {
     var file = fs.readFileSync('./uploads/temp.csv', 'utf8');
     //split into a tab
     file = file.split('\n');
 
     //take only the line 1
-    var line = file[1].split(',')
+    var line = file[1].split(',');
 
-    //choose which column of the row
-    console.log(line[col]);
-   return line[col];
+   return line[randNum];
 }
 
 function getNameOfAllDim(){
@@ -178,7 +155,7 @@ function getNameOfAllDim(){
     //split into a tab
     file = file.split('\n');
     //take only the line 1
-    var line = file[0].split(',')
+    var line = file[0].split(',');
     return line;
 }
 
@@ -199,11 +176,42 @@ function csvToJson() {
     return json
 }
 
+function checkTypeGraph(randNum) {
 
+    var val = getOneData(randNum);
 
+    if (isNaN(val)){
+        var type = "ordinal";
+    } else
+        var type = "quantitative";
 
+    return type;
+}
 
+function getRandomDim() {
 
+    //return new Promise(function(resolve, reject){
+    var randomDim;
 
+    var file = fs.readFileSync('./uploads/temp.csv', 'utf8');
+//split into a tab
+    file = file.split('\n');
+//take only the header
+    var arrayOfHeader = file[0].split(',');
+    var randNum = Math.floor(Math.random() * arrayOfHeader.length);
+
+    randomDim = arrayOfHeader[randNum];
+
+        //tab
+        var resultat = {
+            name:randomDim,
+            type: checkTypeGraph(randNum),
+
+        };
+    //     resolve(resultat);
+    // });
+
+    return resultat;
+}
 
 module.exports = router;
