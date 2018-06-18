@@ -5,35 +5,31 @@ $(document).ready(function () {
 
 function vegaLite() {
 
-    // Embed the visualization in the container with id `vis`
-    // vegaEmbed("#vis", VegaGraph);
-    //
+    for(var i =0;i<results.length;i++){
 
-    console.log(result.items[0]._spec);
-    var test = result.items[0]._spec;
+        var result=results[i];
+        var test2 = result.items[0]._spec;
 
-    vlSpec2 = {
-        "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-        "data": {"url": "uploads/temp.csv"},
-        "mark": test.mark,
-        "encoding": {
-            "x": {
-                "field": test.encodings[0].field,
-                "type": test.encodings[0].type
-            },
-            "y": {
-                "field": test.encodings[1].field,
-                "type":test.encodings[1].type
+
+        vlSpec = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+            "data": {"url": "uploads/temp.csv"},
+            "mark": test2.mark,
+            "encoding": {
+                "x": {
+                    "field": test2.encodings[0].field,
+                    "type": test2.encodings[0].type,
+                },
+                "y": {
+                    "field": test2.encodings[1].field,
+                    "type":test2.encodings[1].type
+                },
             }
-        }
-    };
-    //
-    //
-    //
-    //
-    // vegaEmbed("#vis2", vlSpec2);
+        };
 
-    vegaEmbed("#vis2", vlSpec2);
+        // Embed the visualization in the container with id `vis`
+        vegaEmbed("#vis"+i, vlSpec);
+    }
 
 }
 

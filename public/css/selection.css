@@ -1,3 +1,8 @@
+.container-selection{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
 th, td {
     padding: 20px;
     text-align: left;
@@ -16,7 +21,6 @@ tbody {
     height: 400px;
 }
 td, th { min-width: 150px; }
-
 
 
 
@@ -88,4 +92,26 @@ td, th { min-width: 150px; }
     background-color: #f7f7f9;
     color: #1b1e23;
 }
+.row .col.s6 {
+    width: 49%;
+}
 
+.resize-graph{
+    resize: both;
+    overflow: auto;
+    height: 300px;
+    border-style: solid;
+    border-width: thin;
+    margin-right: 2px;
+    margin-bottom: 2px;
+}
+
+
+#wrapper {
+    height: 500px;
+    background-color: #DDDDDD;
+    left: -1px;
+    padding: 10px 7px 5px;
+    overflow:scroll;
+    overflow-x:hidden;
+}

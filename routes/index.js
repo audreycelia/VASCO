@@ -55,62 +55,51 @@ router.post('/importation', upload.single('file'),function (req, res, next) {
 /* GET selection. */
 router.get('/selection', async function (req, res, next) {
 
-     var opt = {};
+
      //Build a data schema.
      var schema = cql.schema.build(csvToJson);
 
 
-    var headerX = await getRandomDim();
-    var headerY = await getRandomDim();
+    // var headerX = await getRandomDim();
+    // var headerY = await getRandomDim();
 
+    var dims = await getAllDimension();
 
+    var results= [];
 
-    var VegaGraph = {
-        "spec": {
-            "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-            "data": {"url": "uploads/temp.csv", "format": {type: "csv"}},
-            "mark": "?",
-            "encodings": [
-                {
-                    "channel": "x",
-                    "field": headerX.name,
-                    "type": headerX.type
-                },{
-                    "channel": "y",
-                    "field": headerY.name,
-                    "type": headerY.type
-                }
-            ]
-        },
-        "chooseBy": "effectiveness"
-    };
+    for(var i=0;i<dims.length;i++){
 
-    var output = cql.recommend(VegaGraph, schema);
-    var result = output.result; // recommendation result
+        //CompasQL query
+        var VegaGraph = {
+            "spec": {
+                "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+                "data": {"url": "uploads/temp.csv", "format": {type: "csv"}},
+                "mark": "?",
+                "encodings": [
+                    {
+                        "channel": "x",
+                        "field": dims[i].axeX,
+                        "type": dims[i].typeX
+                    },{
+                        "channel": "y",
+                        "field":dims[i].axeY,
+                        "type": dims[i].typeY
+                    }
+                ]
+            },
+            "chooseBy": "effectiveness"
+        };
 
-    // var VegaGraph = {
-    //     "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-    //     "width": 120,
-    //     "height": 200,
-    //     "data": {"url": "uploads/temp.csv", "format": {type: "csv"}},
-    //     "mark": "bar",
-    //         "encoding": {
-    //             "x": {
-    //                 "field": headerX.name,
-    //                 "type": headerX.type
-    //             },
-    //             "y": {
-    //                 "field": headerY.name,
-    //                 "type": headerY.type
-    //             }
-    //         }
-    // };
+        var output = cql.recommend(VegaGraph, schema);
+        var result = output.result; // recommendation result
 
+        results.push(result);
 
-    var nameOfAllDim = getNameOfAllDim();
+    }
+    var dataFile = getDetailsFile();
 
     //Send to the client side
-    res.render('selection' ,{keyGraph: VegaGraph, keyDim: nameOfAllDim, keyResult: result});
+    res.render('selection' ,{keyDim: dataFile, keyResult: results});
 
 });
 
@@ -179,96 +168,100 @@ function checkTypeGraph(randNum) {
     return type;
 }
 
-async function getRandomDim() {
 
-    var randomDim;
+async function getAllDimension() {
 
-    var file = await fs.readFileSync('./uploads/temp.csv', 'utf8');
-//split into a tab
+    var file = fs.readFileSync('./uploads/temp.csv', 'utf8');
+    //split into a tab
     file = file.split('\n');
-//take only the header
+    //take only the header
     var arrayOfHeader = file[0].split(',');
-    var randNum = Math.floor(Math.random() * arrayOfHeader.length);
 
-    randomDim = arrayOfHeader[randNum];
+    var dims=[];
 
-        //tab
-        var resultat = {
-            name:randomDim,
-            type: checkTypeGraph(randNum),
+    for(var index = 0;index<arrayOfHeader.length;index++){
 
-        };
+        for (var index2 = index+1; index2<arrayOfHeader.length;index2++){
+            x=index;
+            y=index2;
 
-    return resultat;
-}
+                var dim = {
+                    axeX : arrayOfHeader[x],
+                    axeY :arrayOfHeader[y],
+                    typeX: checkTypeGraph(x),
+                    typeY: checkTypeGraph(y)
+                };
 
-var file = fs.readFileSync('./uploads/temp.csv', 'utf8');
-//split into a tab
-file = file.split('\n');
-//take only the header
-var arrayOfHeader = file[0].split(',');
-
-function swap(array1, index1, index2) {
-    var temp;
-    temp = array1[index1];
-    array1[index1] = array1[index2];
-    array1[index2] = temp;
-}
-
-function permute(a, l, r) {
-    var i;
-    if (l == r) {
-        console.log(a.join(''));
-    } else {
-        for (i = l; i <= r; i++) {
-            swap(a, l, i);
-            permute(a, l + 1, r);
-            swap(a, l, i);
+            //add in the array
+            dims.push(dim);
         }
     }
+    return dims;
 }
 
-permute([1,2,3],0,2);
+function getDetailsFile(){
+
+    var file = fs.readFileSync('./uploads/temp.csv', 'utf8');
+//split into a tab
+//tab
+    file = file.split('\n');
+
+//display name of headers
+    var arrayOfHeader = file[0].split(',');
+
+    file.splice(0,1);
+
+//put my csv in array
+    for(var i= 0;i<file.length;i++){
+        file[i] =file[i].split(',');
+    }
+
+//display the element of line
+    var tabCsv =[];
+
+//display the element of column
+    for(var y= 0;y<file[0].length;y++){
+
+        //give all the name of the header on the column 0
+        tabCsv[y]=[];
+        tabCsv[y][0] = arrayOfHeader[y];
+
+        var sum=0;
+
+        //display the element of line
+        for(var i= 0;i<file.length;i++){
+
+            var value =file[i][y];
+
+            //check number
+            if (!isNaN(value)){
+                var type = "quantitative";
+                sum+=parseFloat(value);
+            } else{
+                var type = "ordinal";
+                sum = file[0].length;
+            }
+        }
+
+        tabCsv[y][1] = sum;
+        tabCsv[y][2] = type;
+    }
+
+    return tabCsv;
+
+}
 
 
-// function permute(arr){
-//     permuteHelper(arr, 0);
-// }
-//
-// function permuteHelper(arr, index){
-//     if(index >= arr.length - 1){ //If we are at the last element - nothing left to permute
-//         //System.out.println(Arrays.toString(arr));
-//         //Print the array
-//         console.log("[");
-//         for(i = 0; i < arr.length - 1; i++){
-//             console.log(arr[i] + ", ");
-//         }
-//         if(arr.length > 0)
-//             console.log(arr[arr.length - 1]);
-//         console.log("]");
-//         return;
-//     }
-//
-//     for(i = index; i < arr.length; i++){ //For each index in the sub array arr[index...end]
-//
-//         //Swap the elements at indices index and i
-//         var t = arr[index];
-//         arr[index] = arr[i];
-//         arr[i] = t;
-//
-//         //Recurse on the sub array arr[index+1...end]
-//         permuteHelper(arr, index+1);
-//
-//         //Swap the elements back
-//         t = arr[index];
-//         arr[index] = arr[i];
-//         arr[i] = t;
-//         console.log(t);
-//     }
-// }
-//
-// permute(arrayOfHeader);
 
 
+//console.log(file);
+//take only the header
+
+
+
+
+//
+// var test = file[1].split(',');
+// console.log(test[0]);
 
 module.exports = router;

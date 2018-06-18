@@ -3,11 +3,8 @@ extends layout
 
 block extra-headers
     script.
-
-        var VegaGraph = "#{JSON.stringify(keyGraph)}";
-        VegaGraph = JSON.parse(VegaGraph.replace(/&quot;/g,'"'));
-        var result = "#{JSON.stringify(keyResult)}";
-        result = JSON.parse(result.replace(/&quot;/g, '"'));
+        var results = "#{JSON.stringify(keyResult)}";
+        results = JSON.parse(results.replace(/&quot;/g, '"'));
 
 
 block content
@@ -15,33 +12,26 @@ block content
     div#selection
         div.container
             h1 Selection de la visualisation
-            div.row
-                div.col.s6
-                    div#selection-table
-                            table.highlight.responsive-table
-                                thead
+        div.row.container-selection
+            div.col.s4
+                div#selection-table
+                        table.highlight.responsive-table
+                            thead
+                                tr
+                                    th Dimensions
+                                    th Somme
+                                    th Type
+                            tbody
+                                each dim in keyDim
                                     tr
-                                        th Dimensions
-                                        th Somme
-                                        th Type
-                                tbody
-                                    each dim in keyDim
-                                        tr
-                                            td= dim
-                div.col.s6
-                    div.row
-                        div.col.s6
-                            div#vis
-                        div.col.s6
-                            div#vis2
-                div.col.s6
-                    div.row
-                        div.col.s6
-                            pre#query
-                        div.col.s6
-                            pre#spec
-
-
+                                        td= dim[0]
+                                        td= dim[1]
+                                        td= dim[2]
+            div.col.s8
+                div.row#wrapper
+                    each result,index in keyResult
+                        div.col.s6.resize-graph
+                            div(id="vis"+index)
 
 
         div.row
