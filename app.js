@@ -17,7 +17,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/compassql',express.static(path.join(__dirname,'node_modules/compassql/build')))
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);

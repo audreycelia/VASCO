@@ -5,25 +5,16 @@ html
         link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
         link(rel='stylesheet', href='/css/lib/materialize.min.css')
         link(rel='stylesheet', href='/css/style.css')
-        link(rel='stylesheet', href='/css/layout.css')
         link(rel='stylesheet', href='/css/color.css')
-        link(rel='stylesheet', href='/css/selection.css')
+        link(rel='stylesheet', href='/css/index.css')
 
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js")
         script(src="/js/lib/materialize.min.js", type="text/javascript")
-        script(src="https://cdn.jsdelivr.net/npm/vega@3")
-        script(src="https://cdn.jsdelivr.net/npm/vega-lite@2.4.3")
-        script(src="https://cdn.jsdelivr.net/npm/vega-embed@3.13.2")
+
+        script(src="/js/index.js", type="text/javascript")
 
 
-        script(src="/js/importation.js", type="text/javascript")
-        script(src="/js/layout.js", type="text/javascript")
-
-
-    block extra-headers
-
-
-    body#home-layout
+    body#index-layout
         nav.nav-top
             div.container
                 div.nav-wrapper
@@ -32,28 +23,20 @@ html
                         i.material-icons.personnal-yellow menu
                     ul.right.hide-on-med-and-down
                         li
-                            a(href="/index").personnal-yellow.nav-size HOME
+                            a(href="#about").personnal-yellow.nav-size A PROPOS
                         li
-                            a(href="/contact").personnal-yellow.nav-size CONTACT
+                            a(href="#contact").personnal-yellow.nav-size CONTACT
+                        li
+                            a(href="/importation").personnal-yellow.nav-size ANALYSER
 
                 ul.sidenav.mobile-nav-color#mobile-nav
                     li
                         a(href="/index").personnal-yellow.nav-size HOME
                     li
                         a(href="/contact").personnal-yellow.nav-size CONTACT
-        div.container
-            ol.arrows
-                li
-                    a(href="/importation") IMPORTATION
-                li
-                    a(href="/selection") SELECTION
-                li
-                    a(href="/modification") MODIFICATION
-                li
-                    a(href="/exportation") EXPORTATION
+                    li
+                        a(href="/importation").personnal-yellow.nav-size ANALYSER
 
     block content
     footer.page-footar.color-footer
         div.container © Copyright 2018 projet VASCO
-
-

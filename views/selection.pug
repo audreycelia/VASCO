@@ -6,6 +6,8 @@ block extra-headers
 
         var VegaGraph = "#{JSON.stringify(keyGraph)}";
         VegaGraph = JSON.parse(VegaGraph.replace(/&quot;/g,'"'));
+        var result = "#{JSON.stringify(keyResult)}";
+        result = JSON.parse(result.replace(/&quot;/g, '"'));
 
 
 block content
@@ -20,7 +22,8 @@ block content
                                 thead
                                     tr
                                         th Dimensions
-                                        th somme
+                                        th Somme
+                                        th Type
                                 tbody
                                     each dim in keyDim
                                         tr
@@ -31,6 +34,13 @@ block content
                             div#vis
                         div.col.s6
                             div#vis2
+                div.col.s6
+                    div.row
+                        div.col.s6
+                            pre#query
+                        div.col.s6
+                            pre#spec
+
 
 
 

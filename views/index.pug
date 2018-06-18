@@ -1,6 +1,68 @@
-extends layout
+extends layout_index
 
 block content
-  h1= title
-  p Welcome to #{title}
+
+  div#home.wrapper.bg
+      div.container.demo
+      h1.vasco-title VASCO
+          div.row
+            a(href="/importation").waves-effect.waves-light.btn.btn-large.start-btn J'essaye !
+  div#about.section.full-section-index
+      div.container
+          h1 A PROPOS
+      div.container
+          div.row
+              div.col.s2
+              div.col.s8.about-section
+                p « Le Big Data », de nos jours ces trois petits mots ressortent très souvent dans nos discutions, à la télévision, dans les journaux, etc. En effet, nous avons de plus en plus de données provenant de diverses ressources telles que les téléphones portables, les réseaux sociaux, les objets connectés, etc qui nous suivent dans notre quotidien. Ces données sont, pour Monsieur et Madame tout le monde, incompréhensibles. Cependant, il existe déjà des outils tels que D3.js, Google Charts, Plotly, Vega, etc qui permettent de visualiser des données par le biais de graphiques, mais il faut être expert en la matière pour les utiliser et les comprendre, c’est pourquoi nous sommes ici.
+                p Le but de ce projet est de créer une plateforme publique de visualisation de données qui sera facile d’accès, facile d’utilisation et compréhensible pour des personnes n’ayant pas un « Master » dans le domaine.
+                p L’objectif est d’avoir une plateforme en ligne afin que tout le monde puisse y accéder. L’utilisateur pourra, en premier temps, importer des données sous différents formats (csv, xls, etc). Puis les données chargées, il arrivera sur une nouvelle page avec des propositions de plusieurs sortes de graphique. L’idée est qu’il puisse avoir un vu d’ensemble de ses données afin qu’il puisse les analyser et les comprendre facilement. Il sera possible de faire de petites modifications telles que l’ajout d’un titre, changer les couleurs, ajouter des commentaires, etc. Puis, dans un deuxième temps, il pourra exporter les graphiques qu’il le souhaite.
+
+              div.col.s2
+
+  div#contact.section.full-section-index.white
+      div.container
+        h1 CONTACT
+      div.container
+          div.row
+              div.col.s6
+                  form#contact-form
+                      div.input-field.col.s12
+                          i.material-icons.prefix person
+                          input#contact-name(type="text", name="name", required="required")
+                          label(for="contact-name") Nom & Prénom
+                      div.input-field.col.s12
+                          i.material-icons.prefix email
+                          input#contact-email(type="email", name="email", required="required")
+                          label(for="contact-email") Email
+                      div.input-field.col.s12
+                          i.material-icons.prefix edit
+                          input#contact-object(type="text", name="object")
+                          label(for="contact-object") Sujet
+                      div.input-field.col.s12
+                          i.material-icons.prefix chat
+                          textarea#contact-description(data-length="300", name="description").materialize-textarea
+                          label(for="contact-description") Envoyez-nous un messsage
+                      div.col.s12
+                          button(type="submit").waves-effect.waves-light.btn.right
+                              i.material-icons send
+              div.col.s6
+                  div.row.contact-padding
+                      ul
+                          li
+                              span
+                                  i.material-icons.material-icon-vertical-align location_on
+                              | Rue Technopole 3
+                          li
+                              span
+                                  i.material-icons.material-icon-vertical-align location_city
+                              | 3960 Sierre
+                          li
+                              span
+                                  i.material-icons.material-icon-vertical-align phone_android
+                              | 022 000 00 00
+                          li
+                              span
+                                  i.material-icons.material-icon-vertical-align email
+                              | info@vasco.ch
 

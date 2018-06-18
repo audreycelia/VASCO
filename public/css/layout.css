@@ -16,6 +16,26 @@
     font-size: 18px !important;
 }
 
+/*----------------------------FOOTER----------------------------*/
+
+/*https://flatuicolors.com/palette/us
+https://flatuicolors.com/palette/au*/
+.color-footer{
+    /*background-color: #6C7A89;*/
+    background-color: #535c68;
+    color: #f6e58d;
+}
+
+
+footer{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+
+}
+
 /*****ARROWS*****/
 
 /*responsive*/

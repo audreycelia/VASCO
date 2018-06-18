@@ -6,31 +6,35 @@ $(document).ready(function () {
 function vegaLite() {
 
     // Embed the visualization in the container with id `vis`
-    vegaEmbed("#vis", VegaGraph);
+    // vegaEmbed("#vis", VegaGraph);
+    //
+
+    console.log(result.items[0]._spec);
+    var test = result.items[0]._spec;
 
     vlSpec2 = {
         "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
         "data": {"url": "uploads/temp.csv"},
-        //"data":{"name": "values"},
-        "mark": "bar",
+        "mark": test.mark,
         "encoding": {
             "x": {
-                "field": "Manufacturer",
-                "type": "ordinal"
+                "field": test.encodings[0].field,
+                "type": test.encodings[0].type
             },
             "y": {
-                "field": "Calories",
-                "type": "quantitative"
+                "field": test.encodings[1].field,
+                "type":test.encodings[1].type
             }
         }
     };
-
-
-
+    //
+    //
+    //
+    //
+    // vegaEmbed("#vis2", vlSpec2);
 
     vegaEmbed("#vis2", vlSpec2);
 
 }
-
 
 

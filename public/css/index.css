@@ -1,0 +1,117 @@
+html, body{
+    height: 100%;
+
+
+
+}
+
+.bg {
+    background-image: url("../images/white2.jpg") ;
+    background-position: center center;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
+    background-color: #999;
+}
+
+div, body{
+    margin: 0;
+    padding: 0;
+    font-family: exo, sans-serif;
+
+}
+.wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+/*----------------------------FOOTER----------------------------*/
+
+
+.color-footer{
+    /*background-color: #6C7A89;*/
+    background-color: #535c68;
+    color: #f6e58d;
+}
+
+
+footer{
+    position: absolute;
+    right: 0;
+    left: 0;
+    padding: 1rem;
+
+}
+
+
+
+/*----------------------------NAV----------------------------*/
+
+.mobile-nav-color{
+    background-color: #535c68;
+}
+
+.nav-top{
+    width: 100%;
+    top: 0;
+    /*background-color: #6C7A89;*/
+    background-color: #535c68;
+}
+
+.nav-size{
+    font-size: 18px !important;
+}
+
+
+
+.vasco-title{
+    text-align: center;
+    font-size: 100px;
+    line-height:400px;
+    color: #f6e58d;
+    margin: 0 0 0 0;
+}
+
+.start-btn{
+    width: 250px;
+    height: 70px;
+    font-weight: bold;
+    font-size: 30px;
+    line-height:70px;
+}
+
+.full-section-index {
+    min-height: 100vh;
+    padding-top: 64px;
+}
+
+h1{
+     text-align: center;
+     font-size: 50px;
+     color: #f6e58d;
+}
+
+.about-section{
+    font-size: 18px;
+    text-align: justify;
+    letter-spacing: 1px;
+    line-height: 120%;
+}
+.contact-padding{
+    padding-left: 100px;
+}
+
+ul > li{
+    padding-top: 15px;
+    font-size: 18px;
+}
+
+i {
+    padding-right: 10px;
+}
+
+button{
+    color: #95afc0;
+    color: black;
+    width: 130px;
+}
