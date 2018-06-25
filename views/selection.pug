@@ -3,8 +3,8 @@ extends layout
 
 block extra-headers
     script.
-        var results = "#{JSON.stringify(keyResult)}";
-        results = JSON.parse(results.replace(/&quot;/g, '"'));
+        var results = !{JSON.stringify(keyResult).replace(/<\//g, '<\\/')}
+
 
 
 block content

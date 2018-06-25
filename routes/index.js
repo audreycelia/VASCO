@@ -57,7 +57,8 @@ router.get('/selection', async function (req, res, next) {
 
 
      //Build a data schema.
-     var schema = cql.schema.build(csvToJson);
+    var json = convertCsvToJson();
+    var schema = cql.schema.build(json);
 
 
     // var headerX = await getRandomDim();
@@ -65,7 +66,7 @@ router.get('/selection', async function (req, res, next) {
 
     var dims = await getAllDimension();
 
-    var results= [];
+    var results = [];
 
     for(var i=0;i<dims.length;i++){
 
@@ -92,7 +93,6 @@ router.get('/selection', async function (req, res, next) {
 
         var output = cql.recommend(VegaGraph, schema);
         var result = output.result; // recommendation result
-
         results.push(result);
 
     }
@@ -140,7 +140,7 @@ function getNameOfAllDim(){
 }
 
 
-function csvToJson() {
+function convertCsvToJson() {
     let fileInputName = './uploads/temp.csv';
 
     //print number as number and not in string
@@ -152,7 +152,7 @@ function csvToJson() {
 
     let json = csvToJson.getJsonFromCsv('./uploads/temp.csv');
 
-    return json
+    return json;
 
 }
 

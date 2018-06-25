@@ -31,6 +31,8 @@ function vegaLite() {
         vegaEmbed("#vis"+i, vlSpec);
     }
 
+
+
 }
 
 
