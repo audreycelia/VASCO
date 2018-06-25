@@ -202,24 +202,24 @@ async function getAllDimension() {
 function getDetailsFile(){
 
     var file = fs.readFileSync('./uploads/temp.csv', 'utf8');
-//split into a tab
-//tab
+    //split into a tab
+    //tab
     file = file.split('\n');
 
-//display name of headers
+    //display name of headers
     var arrayOfHeader = file[0].split(',');
 
     file.splice(0,1);
 
-//put my csv in array
+    //put my csv in array
     for(var i= 0;i<file.length;i++){
         file[i] =file[i].split(',');
     }
 
-//display the element of line
+    //display the element of line
     var tabCsv =[];
 
-//display the element of column
+    //display the element of column
     for(var y= 0;y<file[0].length;y++){
 
         //give all the name of the header on the column 0
@@ -237,31 +237,29 @@ function getDetailsFile(){
             if (!isNaN(value)){
                 var type = "quantitative";
                 sum+=parseFloat(value);
+
             } else{
                 var type = "ordinal";
                 sum = file[0].length;
             }
+
         }
 
-        tabCsv[y][1] = sum;
+        //if decimal number show only two decimals
+        if (sum % 1 != 0){
+            deciSum = sum.toFixed(2);
+            tabCsv[y][1] = deciSum;
+        }
+        else {
+            tabCsv[y][1] = sum;
+        }
+
         tabCsv[y][2] = type;
     }
+
 
     return tabCsv;
 
 }
-
-
-
-
-//console.log(file);
-//take only the header
-
-
-
-
-//
-// var test = file[1].split(',');
-// console.log(test[0]);
 
 module.exports = router;
