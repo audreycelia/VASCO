@@ -6,28 +6,31 @@ block extra-headers
         var results = !{JSON.stringify(keyResult).replace(/<\//g, '<\\/')}
 
 
-
 block content
 
     div#selection
         div.container
             h1 Selection de la visualisation
         div.row.container-selection
-            div.col.s4
+            div.col.s6
                 div#selection-table
                         table.highlight.responsive-table
                             thead
                                 tr
                                     th Dimensions
-                                    th Somme
                                     th Type
+                                    th Somme
+                                    th Moyenne
                             tbody
                                 each dim in keyDim
                                     tr
                                         td= dim[0]
                                         td= dim[1]
                                         td= dim[2]
-            div.col.s8
+                                        td= dim[3]
+                div#total Nombre de ligne :&nbsp;
+                    = keyDim.length
+            div.col.s6
                 div.row#wrapper
                     each result,index in keyResult
                         div.col.s6.resize-graph

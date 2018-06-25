@@ -1,17 +1,21 @@
 .container-selection{
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 th, td {
     padding: 20px;
     text-align: left;
+    overflow-wrap: break-word;
+    max-width: 5px;
+
 }
 
 tr {
     display: block;
     position: relative;
-    background-color: #58B19F
+    background-color: #58B19F;
+
 }
 
 tbody {
@@ -20,7 +24,10 @@ tbody {
     width: 100%;
     height: 400px;
 }
-td, th { min-width: 150px; }
+td, th {
+    min-width: 10em;
+
+}
 
 
 
@@ -97,21 +104,27 @@ td, th { min-width: 150px; }
 }
 
 .resize-graph{
-    resize: both;
     overflow: auto;
     height: 300px;
     border-style: solid;
     border-width: thin;
-    margin-right: 2px;
-    margin-bottom: 2px;
+    border-color: lightslategray;
+    margin: 2px 2px 2px 2px;
 }
 
 
 #wrapper {
+
     height: 500px;
-    background-color: #DDDDDD;
+    background-color: white;
     left: -1px;
-    padding: 10px 7px 5px;
+    padding: 10px  10px 10px 10px;
     overflow:scroll;
     overflow-x:hidden;
+}
+
+#total{
+    padding-top: 20px;
+    font-size: 18px;
+    font-weight:bold ;
 }

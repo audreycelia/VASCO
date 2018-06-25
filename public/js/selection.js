@@ -10,6 +10,10 @@ function vegaLite() {
         var result=results[i];
         var test2 = result.items[0]._spec;
 
+        var fieldX = test2.encodings[0].field;
+        var fieldY = test2.encodings[1].field;
+
+
 
         vlSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
@@ -17,15 +21,16 @@ function vegaLite() {
             "mark": test2.mark,
             "encoding": {
                 "x": {
-                    "field": test2.encodings[0].field,
+                    "field": fieldX,
                     "type": test2.encodings[0].type,
                 },
                 "y": {
-                    "field": test2.encodings[1].field,
+                    "field":fieldY,
                     "type":test2.encodings[1].type
                 },
             }
         };
+
 
         // Embed the visualization in the container with id `vis`
         vegaEmbed("#vis"+i, vlSpec);
