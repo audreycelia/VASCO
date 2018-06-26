@@ -4,7 +4,7 @@ extends layout
 block extra-headers
     script.
         var results = !{JSON.stringify(keyResult).replace(/<\//g, '<\\/')}
-
+        var dataFile = !{JSON.stringify(keyDim).replace(/<\//g, '<\\/')}
 
 block content
 
@@ -12,6 +12,12 @@ block content
         div.container
             h1 Selection de la visualisation
         div.row.container-selection
+            div.col.s6
+            div.input-field.col.s6
+                    select
+                        option(value="", disabled, selected) Choix de filtre
+                        each filter in keyDim
+                            option(value="")=filter[0]
             div.col.s6
                 div#selection-table
                         table.highlight.responsive-table
@@ -21,20 +27,24 @@ block content
                                     th Type
                                     th Somme
                                     th Moyenne
+                                    th Visuel
                             tbody
-                                each dim in keyDim
+                                each dim,i in keyDim
                                     tr
                                         td= dim[0]
                                         td= dim[1]
                                         td= dim[2]
                                         td= dim[3]
+                                        td.single-graph(id="single"+i)
                 div#total Nombre de ligne :&nbsp;
                     = keyDim.length
             div.col.s6
                 div.row#wrapper
                     each result,index in keyResult
-                        div.col.s6.resize-graph
-                            div(id="vis"+index)
+                        each item in result.items
+                            div.col.s6.resize-graph
+                                div#graph-title= item._spec.encodings[0].field + " / " + item._spec.encodings[1].field
+                                    div(id="vis"+index).graph-size
 
 
         div.row

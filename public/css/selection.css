@@ -25,7 +25,7 @@ tbody {
     height: 400px;
 }
 td, th {
-    min-width: 10em;
+    min-width: 9.5em;
 
 }
 
@@ -34,30 +34,29 @@ td, th {
 
 .vega-embed {
     position: relative;
-    display: inline-block;
     padding-right: 38px;
 }
 
-.vega-embed .vega-actions-wrapper {
-    display: inline-flex;
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 15px;
-    z-index: 1000;
-    opacity: 0.2;
-    background: #B71C1C ;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-    color: #1b1e23;
-    border: 1px solid #aaa;
-    border-radius: 999px;
-    transition: opacity 0.4s ease-in;
-}
+/*.vega-embed .vega-actions-wrapper {*/
+    /*display: inline-flex;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*right: 0;*/
+    /*padding: 15px;*/
+    /*z-index: 1000;*/
+    /*opacity: 0.2;*/
+    /*background: #B71C1C ;*/
+    /*box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);*/
+    /*color: #1b1e23;*/
+    /*border: 1px solid #aaa;*/
+    /*border-radius: 999px;*/
+    /*transition: opacity 0.4s ease-in;*/
+/*}*/
 
-.vega-embed:hover .vega-actions-wrapper {
-    transition: opacity 0.2s ease;
-    opacity: 1;
-}
+/*.vega-embed:hover .vega-actions-wrapper {*/
+    /*transition: opacity 0.2s ease;*/
+    /*opacity: 1;*/
+/*}*/
 
 .vega-embed .vega-actions {
     position: absolute;
@@ -74,16 +73,16 @@ td, th {
     background: white;
 }
 
-.vega-embed .vega-actions-wrapper:hover {
-    background: transparent;
-    color: transparent;
-    border: none;
-    box-shadow: none;
-}
+/*.vega-embed .vega-actions-wrapper:hover {*/
+    /*background: transparent;*/
+    /*color: transparent;*/
+    /*border: none;*/
+    /*box-shadow: none;*/
+/*}*/
 
-.vega-embed .vega-actions-wrapper:hover .vega-actions {
-    display: flex;
-}
+/*.vega-embed .vega-actions-wrapper:hover .vega-actions {*/
+    /*display: flex;*/
+/*}*/
 
 .vega-embed .vega-actions a {
     padding: 8px 16px;
@@ -95,17 +94,17 @@ td, th {
     text-decoration: none;
 }
 
-.vega-embed .vega-actions a:hover {
-    background-color: #f7f7f9;
-    color: #1b1e23;
-}
+/*.vega-embed .vega-actions a:hover {*/
+    /*background-color: #f7f7f9;*/
+    /*color: #1b1e23;*/
+/*}*/
 .row .col.s6 {
     width: 49%;
 }
 
 .resize-graph{
     overflow: auto;
-    height: 300px;
+    height: 350px;
     border-style: solid;
     border-width: thin;
     border-color: lightslategray;
@@ -127,4 +126,19 @@ td, th {
     padding-top: 20px;
     font-size: 18px;
     font-weight:bold ;
+}
+
+#graph-title{
+    padding-top: 10px;
+    font-size: 14px;
+    font-weight:bold ;
+}
+
+.graph-size{
+    padding-top: 20px;
+
+}
+
+.single-graph canvas{
+    max-width: 120px !important;
 }

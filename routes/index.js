@@ -97,6 +97,7 @@ router.get('/selection', async function (req, res, next) {
 
     }
     var dataFile = getDetailsFile();
+    console.log(dataFile)
 
     //Send to the client side
     res.render('selection' ,{keyDim: dataFile, keyResult: results});
