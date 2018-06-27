@@ -4,7 +4,7 @@
     background-color: white;
     left: -1px;
     overflow:scroll;
-    padding: 70px 0;
+    padding: 70px 0 0 20px;
     text-align: center;
 }
 
@@ -13,3 +13,6 @@
     font-weight: bold;
     font-size: 18px;
 }
+
+
+

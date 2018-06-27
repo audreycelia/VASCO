@@ -1,13 +1,17 @@
-//extends layout
-//
-//block content
-//    script.
-//        var result = "#{JSON.stringify(keyExportedGraph)}";
-//        result = JSON.parse(result.replace(/&quot;/g, '"'));
-//
-//    div#exportation
-//        div.container
-//            h1 Exportation de la visualisation
-//                div#exportedGraph
-//
-//    script(src="/js/exportation.js", type="text/javascript")
+extends layout
+
+block content
+    script.
+        var result = "#{JSON.stringify(keyExportedGraph)}";
+        result = JSON.parse(result.replace(/(&quot\;)/g,"\""));
+
+    div#exportation
+        div.container
+            h1 Exportation de la visualisation
+            div.row
+                div.col.s3
+                div.col.s9#exportation-container
+                    div#title-modif= keyExportedGraph.items[0]._spec.encodings[0].field + ' / ' + keyExportedGraph.items[0]._spec.encodings[1].field
+                    div#exportedGraph
+
+    script(src="/js/exportation.js", type="text/javascript")

@@ -4,32 +4,58 @@ block content
     script.
         var result = "#{JSON.stringify(keySelectedGraph)}";
         result= JSON.parse(result.replace(/(&quot\;)/g,"\""));
-           // JSON.parse(result.replace(/&quot;/g,'"'));
 
 
     div#modification
         div.container
             h1 Modification de la visualisation
             div.row
-                form(method="post")#form-modif.col.s4
+                form#form-modif.col.s4
                     div.row
                         div.input-field.col.s11
                             i.material-icons.prefix edit
                             input#icon-title-modif(type="text", name="titre")
                             label(for="icon-title-modif") Titre
-
+                    div.row
+                        div.col.s12
+                            h6 Design du graphique :
+                        div.col.s12
+                            p
+                                label(for="default")
+                                    input#default(type="radio" ,name="input", value="undefined", checked="")
+                                    span Default
+                            p
+                                label(for="dark")
+                                    input#dark(type="radio", name="input", value="dark")
+                                    span Dark
+                            p
+                                label(for="excel")
+                                    input#excel(type="radio", name="input", value="Excel")
+                                    span Microsoft excel
+                            p
+                                label(for="ggplot2")
+                                    input#ggplot2(type="radio", name="input", value="ggplot2")
+                                    span ggplot2
+                            p
+                                label(for="quartz")
+                                    input#quartz(type="radio", name="input", value="quartz")
+                                    span Quartz
+                            p
+                                label(for="vox")
+                                    input#vox(type="radio", name="input", value="vox")
+                                    span Vox
                 div#modification-container.col.s8
                     div.row
                         div.col.s12
-                           // div#title-modif= keySelectedGraph.items[0]._spec.encodings[0].field +' / '+keySelectedGraph.items[0]._spec.encodings[1].field
+                           div#title-modif= keySelectedGraph.items[0]._spec.encodings[0].field +' / '+keySelectedGraph.items[0]._spec.encodings[1].field
                         div#selectedGraph
-        //div.row
-        //    div.col.s6
-        //    div.col.s2
-        //        a.btn.waves-effect.waves-light.right(href="/selection") Retour
-        //            i.material-icons.left keyboard_arrow_left
-        //    div.col.s2
-        //        a.btn.waves-effect.waves-light.right(href="/exportation",onclick=`exportGraph('${keySelectedGraph.items[0]._spec.encodings[0].field}','${keySelectedGraph.items[0]._spec.encodings[1].field}','${keySelectedGraph.items[0]._spec.encodings[0].type}','${keySelectedGraph.items[0]._spec.encodings[1].type}','${keySelectedGraph.items[0]._spec.mark}')`).right#btn-export Suivant
-        //            i.material-icons.right keyboard_arrow_right
+        div.row
+            div.col.s6
+            div.col.s2
+                a.btn.waves-effect.waves-light.right(href="/selection") Retour
+                    i.material-icons.left keyboard_arrow_left
+            div.col.s2
+                a.btn.waves-effect.waves-light.right(onclick=`modifGraph('${keySelectedGraph.items[0]._spec.encodings[0].field}','${keySelectedGraph.items[0]._spec.encodings[1].field}','${keySelectedGraph.items[0]._spec.encodings[0].type}','${keySelectedGraph.items[0]._spec.encodings[1].type}','${keySelectedGraph.items[0]._spec.mark}')`).right#btn-export Suivant
+                        i.material-icons.right keyboard_arrow_right
 
     script(src="/js/modification.js", type="text/javascript")

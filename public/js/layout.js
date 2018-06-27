@@ -3,6 +3,9 @@ $(document).ready(function () {
     currentState();
     $('.sidenav').sidenav();
 
+    $(".ignore-click").click(function(){
+        return false;
+    })
 
 });
 
