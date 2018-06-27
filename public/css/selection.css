@@ -134,11 +134,16 @@ td, th {
     font-weight:bold ;
 }
 
-.graph-size{
+.graph-padding{
     padding-top: 20px;
-
 }
 
 .single-graph canvas{
     max-width: 120px !important;
+}
+
+
+#icon-edit{
+    color:black;
+    cursor: pointer;
 }

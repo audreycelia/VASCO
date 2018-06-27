@@ -1,0 +1,15 @@
+#modification-container {
+
+    width: 60%;
+    background-color: white;
+    left: -1px;
+    overflow:scroll;
+    padding: 70px 0;
+    text-align: center;
+}
+
+#title-modif{
+    padding-bottom: 40px;
+    font-weight: bold;
+    font-size: 18px;
+}

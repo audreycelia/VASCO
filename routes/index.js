@@ -10,7 +10,6 @@ var csvToJson = require('convert-csv-to-json');
 
 
 
-
 /*store the import file in the uploads directory*/
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -60,10 +59,6 @@ router.get('/selection', async function (req, res, next) {
     var json = convertCsvToJson();
     var schema = cql.schema.build(json);
 
-
-    // var headerX = await getRandomDim();
-    // var headerY = await getRandomDim();
-
     var dims = await getAllDimension();
 
     var results = [];
@@ -94,10 +89,8 @@ router.get('/selection', async function (req, res, next) {
         var output = cql.recommend(VegaGraph, schema);
         var result = output.result; // recommendation result
         results.push(result);
-
     }
     var dataFile = getDetailsFile();
-    console.log(dataFile)
 
     //Send to the client side
     res.render('selection' ,{keyDim: dataFile, keyResult: results});
@@ -110,13 +103,87 @@ router.get('/selection', async function (req, res, next) {
 
 /* GET modification. */
 router.get('/modification', function (req, res, next) {
-    res.render('modification');
+
+    //Build a data schema.
+    var json = convertCsvToJson();
+    var schema = cql.schema.build(json);
+
+    var mark = req.query.mark;
+    var typeX = req.query.typeX;
+    var typeY = req.query.typeY;
+    var fieldX = req.query.axeX;
+    var fieldY = req.query.axeY;
+
+
+        //CompasQL query
+        var VegaGraph = {
+            "spec": {
+                "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+                "data": {"url": "uploads/temp.csv", "format": {type: "csv"}},
+                "mark": mark,
+                "encodings": [
+                    {
+                        "channel": "x",
+                        "field": fieldX,
+                        "type": typeX
+                    },{
+                        "channel": "y",
+                        "field":fieldY,
+                        "type": typeY
+                    }
+                ]
+            },
+            "chooseBy": "effectiveness"
+        };
+
+        var output = cql.recommend(VegaGraph, schema);
+        var result = output.result; // recommendation result
+
+
+    res.render('modification', { keySelectedGraph: result});
 });
 
-/* GET exportation. */
-router.get('/exportation', function (req, res, next) {
-    res.render('exportation');
-});
+
+// /* GET exportation. */
+// router.get('/exportation', function (req, res, next) {
+//
+//     //Build a data schema.
+//     var json = convertCsvToJson();
+//     var schema = cql.schema.build(json);
+//
+//     var mark = req.query.mark;
+//     var typeX = req.query.typeX;
+//     var typeY = req.query.typeY;
+//     var fieldX = req.query.axeX;
+//     var fieldY = req.query.axeY;
+//
+//
+//     //CompasQL query
+//     var VegaGraph = {
+//         "spec": {
+//             "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+//             "data": {"url": "uploads/temp.csv", "format": {type: "csv"}},
+//             "mark": mark,
+//             "encodings": [
+//                 {
+//                     "channel": "x",
+//                     "field": fieldX,
+//                     "type": typeX
+//                 },{
+//                     "channel": "y",
+//                     "field":fieldY,
+//                     "type": typeY
+//                 }
+//             ]
+//         },
+//         "chooseBy": "effectiveness"
+//     };
+//
+//     var output = cql.recommend(VegaGraph, schema);
+//     var result = output.result; // recommendation result
+//
+//     res.render('exportation',{ keyExportedGraph: result});
+// });
 
 
 //take only one data in my csv file
