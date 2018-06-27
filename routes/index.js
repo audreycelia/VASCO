@@ -6,6 +6,7 @@ var csv = require('csv-parser');
 var fs = require('fs');
 var cql = require('compassql');
 var csvToJson = require('convert-csv-to-json');
+var tooltip = require('vega-tooltip');
 
 
 

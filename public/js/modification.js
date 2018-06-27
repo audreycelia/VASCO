@@ -1,6 +1,8 @@
 $(document).ready(function () {
 
     selectedGraphVegaLite();
+    // get value of selected 'ship' radio button in 'demoForm'
+
 
 });
 
@@ -25,39 +27,29 @@ function selectedGraphVegaLite() {
                 "field": fieldY,
                 "type": test.encodings[1].type
             },
+            "tooltip":
+                {"field": fieldX, "type": test.encodings[0].type}
 
         }
     };
 
-    // if (document.getElementById("default").checked){
-    //     document.getElementById("selectedGraph").innerHTML =  vegaEmbed("#selectedGraph", vlSpec);
-    // } else if (document.getElementById("dark").checked){
-    //     document.getElementById("selectedGraph").innerHTML = vegaEmbed("#selectedGraph", vlSpec,{theme: 'dark'});
-    // }
-
     $('input:radio').on( "click", function() {
         if ($(this).attr('id') === 'default') {
-
             vegaEmbed("#selectedGraph", vlSpec);
         }
         else if ($(this).attr('id') === 'dark') {
-
             vegaEmbed("#selectedGraph", vlSpec,{theme: 'dark'});
         }
         else if ($(this).attr('id') === 'excel') {
-
             vegaEmbed("#selectedGraph", vlSpec,{theme: 'excel'});
         }
         else if ($(this).attr('id') === 'ggplot2') {
-
             vegaEmbed("#selectedGraph", vlSpec,{theme: 'ggplot2'});
         }
         else if ($(this).attr('id') === 'quartz') {
-
             vegaEmbed("#selectedGraph", vlSpec,{theme: 'quartz'});
         }
         else if ($(this).attr('id') === 'vox') {
-
             vegaEmbed("#selectedGraph", vlSpec,{theme: 'vox'});
         }
         else {
@@ -65,36 +57,36 @@ function selectedGraphVegaLite() {
             vegaEmbed("#selectedGraph", vlSpec);
         }
     });
-    vegaEmbed("#selectedGraph", vlSpec);
+
     // Embed the visualization in the container with id
-    //vegaEmbed("#selectedGraph", vlSpec);
+    vegaEmbed("#selectedGraph", vlSpec);
+
 }
 
 
 function modifGraph(axeX, axeY, typeX, typeY, mark) {
 
+    //value of the radio button
+    var designColor = getRadioVal(document.getElementById('form-modif'), 'input' );
+
+
     if (document.getElementById('btn-export')) {
-        window.location = "/exportation?axeX="+axeX+"&axeY="+axeY+"&typeX="+typeX+"&typeY="+typeY+"&mark="+mark;
+        window.location = "/exportation?axeX="+axeX+"&axeY="+axeY+"&typeX="+typeX+"&typeY="+typeY+"&mark="+mark+"&radio="+"&design="+designColor;
 
     }
 }
 
-// function radioButton(radio){
-//     var value;
-//     // if (document.getElementById('default').checked) {
-//     //     value = document.getElementById('default').value;
-//     //     document.getElementById("#selectedGraph").innerHTML = value;
-//     // }
-//     // else if (document.getElementById('dark').checked) {
-//     //     value = document.getElementById('dark').value;
-//     //     document.getElementById("#selectedGraph").innerHTML = value;
-//     // }
-//
-//     if(radio.checked && radio.id === "default"){
-//         document.getElementById("selectedGraph").innerHTML =vegaEmbed("#selectedGraph", vlSpec);
-//     }
-//     else if(radio.checked && radio.id === "dark"){
-//         document.getElementById("selectedGraph").innerHTML =vegaEmbed("#selectedGraph", vlSpec,{theme: 'dark'});
-//     }
-// }
+function getRadioVal(form, name) {
+    var val;
+    // get list of radio buttons with specified name
+    var radios = form.elements[name];
 
+    // loop through list of radio buttons
+    for (var i=0, len=radios.length; i<len; i++) {
+        if ( radios[i].checked ) { // radio checked?
+            val = radios[i].value; // if so, hold its value in val
+            break; // and break out of for loop
+        }
+    }
+    return val; // return value of checked radio or undefined if none checked
+}

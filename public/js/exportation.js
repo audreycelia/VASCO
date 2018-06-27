@@ -24,10 +24,16 @@ function exportedGraphVegaLite() {
                 "field": fieldY,
                 "type": test.encodings[1].type
             },
+            "tooltip":
+                {"field": fieldX, "type": test.encodings[0].type}
         }
     };
 
+    var url_string =  window.location.href;
+    var url = new URL(url_string);
+    var value = url.searchParams.get("design");
+
 
     // Embed the visualization in the container with id
-    vegaEmbed("#exportedGraph", vlSpec);
+    vegaEmbed("#exportedGraph", vlSpec, {theme:value});
 }
