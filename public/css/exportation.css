@@ -24,14 +24,16 @@
     font-size: 14px;
     font-weight: 600;
     white-space: nowrap;
-    color: #434a56;
+    color: white;
     text-decoration: none;
+    background-color: #434a56;
+    border-right: 10px solid ;
+
 }
 
 /*hover when on the button*/
 .vega-embed .vega-actions a:hover {
-background-color: #f7f7f9;
-color: #1b1e23;
+background-color: #1b1e23;
 }
 
 .vega-actions-wrapper {
