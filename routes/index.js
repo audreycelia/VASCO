@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
-//var datalib = require('datalib');
 var multer = require('multer');
-var csv = require('csv-parser');
 var fs = require('fs');
 var cql = require('compassql');
 var csvToJson = require('convert-csv-to-json');
@@ -23,9 +21,6 @@ var storage = multer.diskStorage({
     }
 });
 var upload = multer({storage: storage});
-
-
-
 
 
 
@@ -223,7 +218,7 @@ function convertCsvToJson() {
     csvToJson.formatValueByType().getJsonFromCsv(fileInputName);
 
     //as default delimiter is ; so we set as ,
-    var test=  csvToJson.fieldDelimiter(',').getJsonFromCsv(fileInputName);
+    var test=  csvToJson.fieldDelimiter(';').getJsonFromCsv(fileInputName);
 
 
     let json = csvToJson.getJsonFromCsv('./uploads/temp.csv');

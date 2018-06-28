@@ -10,8 +10,8 @@ block content
                     form#import-form(action="/importation",method="post", enctype="multipart/form-data")
                         div.file-field.input-field
                             div.btn
-                                span File
-                                input#importfile(type="file", name="file", accept=".csv, .json,application/json")
+                                span Fichier
+                                input#importfile(type="file", name="file", accept=".csv, .json,application/json").tooltipped(data-position="left", data-tooltip="Seulement fichier CSV")
                             div.file-path-wrapper
                             input.file-path.validate(name="importfile",type="text")
 

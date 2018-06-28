@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    //M.CharacterCounter.init(document.querySelectorAll('#textarea-import'));
 
+    $('.tooltipped').tooltip();
     $('textarea#textarea-import').characterCounter();
 });
