@@ -73,12 +73,12 @@ td, th {
     background: white;
 }
 
-/*.vega-embed .vega-actions-wrapper:hover {*/
-    /*background: transparent;*/
-    /*color: transparent;*/
-    /*border: none;*/
-    /*box-shadow: none;*/
-/*}*/
+.vega-embed .vega-actions-wrapper:hover {
+    background: transparent;
+    color: transparent;
+    border: none;
+    box-shadow: none;
+}
 
 /*.vega-embed .vega-actions-wrapper:hover .vega-actions {*/
     /*display: flex;*/
@@ -130,7 +130,7 @@ td, th {
 
 #graph-title{
     padding-top: 10px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight:bold ;
 }
 
@@ -146,4 +146,12 @@ td, th {
 #icon-edit{
     color:black;
     cursor: pointer;
+}
+
+.hover:hover {
+    background-color: red;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px 50px;
+    background-image:url("/images/icon/check.svg");
 }

@@ -11,6 +11,7 @@ var tooltip = require('vega-tooltip');
 
 
 
+
 /*store the import file in the uploads directory*/
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -213,19 +214,27 @@ function getNameOfAllDim(){
 
 function convertCsvToJson() {
     let fileInputName = './uploads/temp.csv';
+    let content = fs.readFileSync(fileInputName, 'utf8');
+    content=content.replace(/\\r/g,"");
+    fs.writeFileSync(fileInputName,content);
+
 
     //print number as number and not in string
     csvToJson.formatValueByType().getJsonFromCsv(fileInputName);
 
     //as default delimiter is ; so we set as ,
-        csvToJson.fieldDelimiter(',') .getJsonFromCsv(fileInputName);
+    var test=  csvToJson.fieldDelimiter(',').getJsonFromCsv(fileInputName);
 
 
     let json = csvToJson.getJsonFromCsv('./uploads/temp.csv');
 
+
+    console.log(json)
     return json;
 
 }
+
+
 
 function checkTypeGraph(randNum) {
 
@@ -238,7 +247,6 @@ function checkTypeGraph(randNum) {
 
     return type;
 }
-
 
 async function getAllDimension() {
 

@@ -1,6 +1,8 @@
 $(document).ready(function () {
 
     exportedGraphVegaLite();
+
+
 });
 
 function exportedGraphVegaLite() {
@@ -26,14 +28,21 @@ function exportedGraphVegaLite() {
             },
             "tooltip":
                 {"field": fieldX, "type": test.encodings[0].type}
-        }
+        },
+
     };
 
+    //get value of the design color
     var url_string =  window.location.href;
     var url = new URL(url_string);
-    var value = url.searchParams.get("design");
+    var design = url.searchParams.get("design");
 
 
     // Embed the visualization in the container with id
-    vegaEmbed("#exportedGraph", vlSpec, {theme:value});
+   vegaEmbed("#exportedGraph", vlSpec, {theme:design});
+
+
 }
+
+
+

@@ -71,6 +71,8 @@ function modifGraph(axeX, axeY, typeX, typeY, mark) {
 
 
     if (document.getElementById('btn-export')) {
+        axeX=axeX.replace(/%/g,"%25");
+        axeY=axeY.replace(/%/g,"%25");
         window.location = "/exportation?axeX="+axeX+"&axeY="+axeY+"&typeX="+typeX+"&typeY="+typeY+"&mark="+mark+"&radio="+"&design="+designColor;
 
     }
@@ -89,4 +91,17 @@ function getRadioVal(form, name) {
         }
     }
     return val; // return value of checked radio or undefined if none checked
+}
+
+function getValueTitle() {
+    var inputs = document.getElementsByTagName('input'),
+        commandValue = null;
+    for (var i = 0; i < inputs.length; i++) {
+        if (inputs[i].name === "titre") {
+            commandValue = inputs[i].value; // get the element value
+        }
+    }
+    alert (commandValue); // show the value
+    return false; // prevent default form action
+
 }

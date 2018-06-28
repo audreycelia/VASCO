@@ -1,9 +1,13 @@
 extends layout
 
-block content
+
+block extra-headers
+    link(rel='stylesheet', href='/css/exportation.css')
     script.
         var result = "#{JSON.stringify(keyExportedGraph)}";
-        result = JSON.parse(result.replace(/(&quot\;)/g,"\""));
+        result = JSON.parse(result.replace(/(&quot;)/g, '"').replace(/\r/g, ""));
+
+block content
 
     div#exportation
         div.container
@@ -15,3 +19,4 @@ block content
                     div#exportedGraph
 
     script(src="/js/exportation.js", type="text/javascript")
+

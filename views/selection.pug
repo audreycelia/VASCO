@@ -2,6 +2,7 @@ extends layout
 
 
 block extra-headers
+    link(rel='stylesheet', href='/css/selection.css')
     script.
         var results = !{JSON.stringify(keyResult).replace(/<\//g, '<\\/')}
         var dataFile = !{JSON.stringify(keyDim).replace(/<\//g, '<\\/')}
@@ -44,11 +45,9 @@ block content
                 div.row#wrapper
                     each result,index in keyResult
                         each item in result.items
-                            div.col.s6.resize-graph(id="graphFilter"+index)
+                            div.col.s6.resize-graph.hover(id="graphFilter"+index)
                                 div#graph-title= item._spec.encodings[0].field + " / " + item._spec.encodings[1].field
-                                    a(onclick=`selectGraph('${item._spec.encodings[0].field}','${item._spec.encodings[1].field}','${item._spec.encodings[0].type}','${item._spec.encodings[1].type}','${item._spec.mark}')`).right#icon-edit
-                                        i.material-icons edit
-                                div(id="vis"+index).graph-padding
+                                div(id="vis"+index).graph-padding(onclick=`selectGraph('${item._spec.encodings[0].field}','${item._spec.encodings[1].field}','${item._spec.encodings[0].type}','${item._spec.encodings[1].type}','${item._spec.mark}')`)
 
 
 
@@ -63,3 +62,4 @@ block content
 
 
     script(src="/js/selection.js", type="text/javascript")
+

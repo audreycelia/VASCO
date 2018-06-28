@@ -1,16 +1,17 @@
 extends layout
 
-block content
+block extra-headers
+    link(rel='stylesheet', href='/css/modification.css')
     script.
         var result = "#{JSON.stringify(keySelectedGraph)}";
-        result= JSON.parse(result.replace(/(&quot\;)/g,"\""));
-
+        result = JSON.parse(result.replace(/(&quot;)/g, '"').replace(/\r/g,""));
+block content
 
     div#modification
         div.container
             h1 Modification de la visualisation
             div.row
-                form#form-modif.col.s4
+                form(onsubmit="return getValueTitle()")#form-modif.col.s4
                     div.row
                         div.input-field.col.s11
                             i.material-icons.prefix edit

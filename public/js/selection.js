@@ -102,9 +102,9 @@ function createGraphFilter(value) {
 
 function selectGraph(axeX, axeY, typeX, typeY, mark) {
 
-    if (document.getElementById('icon-edit')) {
-        //var href = document.getElementById('icon-edit');
+
+        axeX=axeX.replace(/%/g,"%25");
+        axeY=axeY.replace(/%/g,"%25");
         window.location = "/modification?axeX="+axeX+"&axeY="+axeY+"&typeX="+typeX+"&typeY="+typeY+"&mark="+mark;
 
-    }
 }
