@@ -93,15 +93,15 @@ function getRadioVal(form, name) {
     return val; // return value of checked radio or undefined if none checked
 }
 
-function getValueTitle() {
-    var inputs = document.getElementsByTagName('input'),
-        commandValue = null;
-    for (var i = 0; i < inputs.length; i++) {
-        if (inputs[i].name === "titre") {
-            commandValue = inputs[i].value; // get the element value
-        }
-    }
-    alert (commandValue); // show the value
-    return false; // prevent default form action
-
-}
+// function getValueTitle() {
+//     var inputs = document.getElementsByTagName('input'),
+//         commandValue = null;
+//     for (var i = 0; i < inputs.length; i++) {
+//         if (inputs[i].name === "titre") {
+//             commandValue = inputs[i].value; // get the element value
+//         }
+//     }
+//     alert (commandValue); // show the value
+//     return false; // prevent default form action
+//
+// }

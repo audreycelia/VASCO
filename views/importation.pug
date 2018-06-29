@@ -11,10 +11,17 @@ block content
                         div.file-field.input-field
                             div.btn
                                 span Fichier
-                                input#importfile(type="file", name="file", accept=".csv, .json,application/json").tooltipped(data-position="left", data-tooltip="Seulement fichier CSV")
+                                input#importfile(type="file", name="file", accept=".csv, .json,application/json", data-position="left", data-tooltip="Seulement fichier CSV").tooltipped
                             div.file-path-wrapper
-                            input.file-path.validate(name="importfile",type="text")
-
+                            input.file-path.validate(name="importfile",type="text")#file-imported
                         div.col.s12
                             button.btn.waves-effect.waves-light.right(type="submit") Suivant
                                 i.material-icons.right send
+                div.col.s8
+                h5 Essaye avec nos exemples
+                    div.row
+                        div.col.s6
+                            button(type="submit",name="cereal",id="btn-cereal", onclick="ourExample(this.value)"  value='./uploads/cereal.csv').btn.waves-effect.waves-light Cereal
+                            a#btn-it.btn.waves-effect.waves-light IT
+
+    script(src="/js/importation.js", type="text/javascript")

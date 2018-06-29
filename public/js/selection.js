@@ -1,4 +1,9 @@
 $(document).ready(function () {
+
+    $(window).on('load', function() {
+        $("#cover").hide();
+    });
+
     vegaLite();
     singleGraph();
     $('select').formSelect();
@@ -32,12 +37,9 @@ function vegaLite() {
 
             }
         };
-
-
         // Embed the visualization in the container with id `vis`
         vegaEmbed("#vis" + i, vlSpec);
     }
-
 }
 
 function singleGraph() {
@@ -59,12 +61,9 @@ function singleGraph() {
                 }
             }
         };
-
-
         // Embed the visualization in the container with id `vis`
         vegaEmbed("#single" + i, singleSpec);
     }
-
 }
 
 function applyFilter() {
@@ -76,7 +75,11 @@ function applyFilter() {
 
 function createGraphFilter(value) {
 
-    if (value == "") {
+    if (value === "") {
+        $(".resize-graph").show();
+        return
+    }
+    else if (value === "all"){
         $(".resize-graph").show();
         return
     }
@@ -87,24 +90,24 @@ function createGraphFilter(value) {
         var test = result.items[0]._spec;
 
 
-        if (test.encodings[0].field == value) {
-
+        if (test.encodings[0].field === value) {
             $("#graphFilter" + i).show();
-
+        }
+        else if (test.encodings[1].field === value) {
+            $("#graphFilter" + i).show();
         }
         else {
             $("#graphFilter" + i).hide();
         }
 
     }
+
+
 }
 
 
 function selectGraph(axeX, axeY, typeX, typeY, mark) {
-
-
         axeX=axeX.replace(/%/g,"%25");
         axeY=axeY.replace(/%/g,"%25");
         window.location = "/modification?axeX="+axeX+"&axeY="+axeY+"&typeX="+typeX+"&typeY="+typeY+"&mark="+mark;
-
 }

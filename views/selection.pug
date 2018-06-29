@@ -17,6 +17,7 @@ block content
             div.input-field.col.s4
                 select#select-filter
                     option(value="", disabled, selected) Choix de filtre
+                    option(value="all") Tout
                     each filter in keyDim
                         option=filter[0]
             div.col.s2
@@ -47,7 +48,7 @@ block content
                         each item in result.items
                             div.col.s6.resize-graph.hover(id="graphFilter"+index)
                                 div#graph-title= item._spec.encodings[0].field + " / " + item._spec.encodings[1].field
-                                div(id="vis"+index).graph-padding(onclick=`selectGraph('${item._spec.encodings[0].field}','${item._spec.encodings[1].field}','${item._spec.encodings[0].type}','${item._spec.encodings[1].type}','${item._spec.mark}')`)
+                                div(id="vis"+index, onclick=`selectGraph('${item._spec.encodings[0].field}','${item._spec.encodings[1].field}','${item._spec.encodings[0].type}','${item._spec.encodings[1].type}','${item._spec.mark}')`).graph-padding
 
 
 
@@ -59,7 +60,8 @@ block content
             div.col.s2
                 a.btn.waves-effect.waves-light.right(href="/modification") Suivant
                     i.material-icons.right keyboard_arrow_right
-
+    div#cover
+        i.material-icons.rotate.large autorenew
 
     script(src="/js/selection.js", type="text/javascript")
 

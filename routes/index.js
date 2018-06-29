@@ -29,13 +29,12 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-// router.get('/', (req, res, next) => {
-//     res.render('index', { title: 'Express' });
-// });
-
 /* GET importation. */
 router.get('/importation', function (req, res, next) {
+
+
     res.render('importation');
+
 });
 
 /* POST file importation. */

@@ -155,3 +155,26 @@ td, th {
     background-size: 50px 50px;
     background-image:url("/images/icon/check.svg");
 }
+
+
+#cover {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top:0; left: 0;
+    background: lightslategray;
+    opacity: 0.8;
+    z-index:9999;
+    text-align: center;
+    padding-top: 350px;
+}
+
+.rotate
+{
+    -webkit-animation: spin 4s infinite linear;
+}
+
+@-webkit-keyframes spin {
+    0%  {-webkit-transform: rotate(0deg);}
+    100% {-webkit-transform: rotate(360deg);}
+}
