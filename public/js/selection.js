@@ -10,6 +10,7 @@ $(document).ready(function () {
     applyFilter();
 });
 
+/*CREATE ALL THE GRAPH WITH VEGA-LITE*/
 function vegaLite() {
 
     for (var i = 0; i < results.length; i++) {
@@ -42,6 +43,7 @@ function vegaLite() {
     }
 }
 
+/*DISPLAY SMALL GRAPH WITH ONE AXE IN THE RESUME TAB*/
 function singleGraph() {
 
     for (var i = 0; i < dataFile.length; i++) {
@@ -66,13 +68,14 @@ function singleGraph() {
     }
 }
 
+/*APPLY THE FILTER SELECTED BY THE USER*/
 function applyFilter() {
     var selector = document.getElementById('select-filter');
     var value = selector[selector.selectedIndex].value;
     createGraphFilter(value);
 }
 
-
+/*DISPLAY FILTERED GRAPH*/
 function createGraphFilter(value) {
 
     if (value === "") {
@@ -99,13 +102,10 @@ function createGraphFilter(value) {
         else {
             $("#graphFilter" + i).hide();
         }
-
     }
-
-
 }
 
-
+/*SEND IN THE URL SOME PARAMETER*/
 function selectGraph(axeX, axeY, typeX, typeY, mark) {
         axeX=axeX.replace(/%/g,"%25");
         axeY=axeY.replace(/%/g,"%25");

@@ -49,16 +49,13 @@ block content
                             div.col.s6.resize-graph.hover(id="graphFilter"+index)
                                 div#graph-title= item._spec.encodings[0].field + " / " + item._spec.encodings[1].field
                                 div(id="vis"+index, onclick=`selectGraph('${item._spec.encodings[0].field}','${item._spec.encodings[1].field}','${item._spec.encodings[0].type}','${item._spec.encodings[1].type}','${item._spec.mark}')`).graph-padding
-
-
-
         div.row
             div.col.s6
             div.col.s2
-                a.btn.waves-effect.waves-light.right(href="/importation") Retour
+                a.btn.waves-effect.waves-light.right.btn-size(href="/importation") Retour
                     i.material-icons.left keyboard_arrow_left
             div.col.s2
-                a.btn.waves-effect.waves-light.right(href="/modification") Suivant
+                a.btn.waves-effect.waves-light.right.btn-size(href="/modification") Suivant
                     i.material-icons.right keyboard_arrow_right
     div#cover
         i.material-icons.rotate.large autorenew

@@ -48,11 +48,11 @@ block content
         div.row
             div.col.s6
             div.col.s2
-                a.btn.waves-effect.waves-light.right(href="/selection") Retour
+                a.btn.waves-effect.waves-light.right.btn-size(href="/selection") Retour
                     i.material-icons.left keyboard_arrow_left
             div.col.s2
-                a.btn.waves-effect.waves-light.right(onclick=`modifGraph('${keySelectedGraph.items[0]._spec.encodings[0].field}','${keySelectedGraph.items[0]._spec.encodings[1].field}','${keySelectedGraph.items[0]._spec.encodings[0].type}','${keySelectedGraph.items[0]._spec.encodings[1].type}','${keySelectedGraph.items[0]._spec.mark}')`).right#btn-export Suivant
-                        i.material-icons.right keyboard_arrow_right
+                a.btn.waves-effect.waves-light.right.btn-size(onclick=`modifGraph('${keySelectedGraph.items[0]._spec.encodings[0].field}','${keySelectedGraph.items[0]._spec.encodings[1].field}','${keySelectedGraph.items[0]._spec.encodings[0].type}','${keySelectedGraph.items[0]._spec.encodings[1].type}','${keySelectedGraph.items[0]._spec.mark}')`).right#btn-export Suivant
+                    i.material-icons.right keyboard_arrow_right
 
     script(src="/js/modification.js", type="text/javascript")
 

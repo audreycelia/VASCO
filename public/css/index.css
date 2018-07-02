@@ -1,12 +1,10 @@
+/*----------------------------IMAGE SECTION----------------------------*/
 html, body{
     height: 100%;
-
-
-
 }
 
 .bg {
-    background-image: url("../images/white2.jpg") ;
+    background-image: url("../images/white.jpg") ;
     background-position: center center;
     background-repeat:  no-repeat;
     background-attachment: fixed;
@@ -25,6 +23,17 @@ div, body{
     width: 100%;
 }
 
+.full-section-index {
+    min-height: 100vh;
+    padding-top: 64px;
+}
+
+h1{
+    text-align: center;
+    font-size: 50px;
+    color: #f9ca24;
+}
+
 /*----------------------------FOOTER----------------------------*/
 
 
@@ -40,9 +49,7 @@ footer{
     right: 0;
     left: 0;
     padding: 1rem;
-
 }
-
 
 
 /*----------------------------NAV----------------------------*/
@@ -54,7 +61,6 @@ footer{
 .nav-top{
     width: 100%;
     top: 0;
-    /*background-color: #6C7A89;*/
     background-color: #535c68;
 }
 
@@ -63,14 +69,16 @@ footer{
 }
 
 
+/*----------------------------SECTION HOME----------------------------*/
 
 .vasco-title{
     text-align: center;
-    font-size: 100px;
+    font-size: 150px;
     line-height:400px;
     color: #f6e58d;
     margin: 0 0 0 0;
 }
+/*********BUTTON*************/
 
 .start-btn{
     width: 250px;
@@ -78,18 +86,16 @@ footer{
     font-weight: bold;
     font-size: 30px;
     line-height:70px;
+    color: #535c68;
 }
 
-.full-section-index {
-    min-height: 100vh;
-    padding-top: 64px;
+.btn:hover{
+    background-color:#95afc0;
+    color: #535c68;
 }
 
-h1{
-     text-align: center;
-     font-size: 50px;
-     color: #f6e58d;
-}
+
+/*----------------------------SECTION ABOUT----------------------------*/
 
 .about-section{
     font-size: 18px;
@@ -97,6 +103,8 @@ h1{
     letter-spacing: 1px;
     line-height: 120%;
 }
+
+/*----------------------------SECTION CONTACT----------------------------*/
 .contact-padding{
     padding-left: 100px;
 }
@@ -111,7 +119,5 @@ i {
 }
 
 button{
-    color: #95afc0;
-    color: black;
     width: 130px;
 }

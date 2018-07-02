@@ -8,7 +8,6 @@
 .nav-top{
     width: 100%;
     top: 0;
-    /*background-color: #6C7A89;*/
     background-color: #535c68;
 }
 
@@ -90,5 +89,5 @@ footer{
 
 /*****Change color of the current state of the page*****/
 .current-state{
-    color: #ffbe76 !important;
+    color: #95afc0 !important;
 }

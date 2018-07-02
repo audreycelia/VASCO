@@ -1,11 +1,8 @@
 $(document).ready(function () {
-
     selectedGraphVegaLite();
-    // get value of selected 'ship' radio button in 'demoForm'
-
-
 });
 
+/*GET AND DISPLAY THE GRAPH SELECTED */
 function selectedGraphVegaLite() {
 
     //variables
@@ -33,6 +30,7 @@ function selectedGraphVegaLite() {
         }
     };
 
+    //APPLY FILTER FROM VEGA-TOOLBOX
     $('input:radio').on( "click", function() {
         if ($(this).attr('id') === 'default') {
             vegaEmbed("#selectedGraph", vlSpec);
@@ -63,7 +61,7 @@ function selectedGraphVegaLite() {
 
 }
 
-
+/*SEND IN THE URL SOME PARAMETER*/
 function modifGraph(axeX, axeY, typeX, typeY, mark) {
 
     //value of the radio button
@@ -78,6 +76,7 @@ function modifGraph(axeX, axeY, typeX, typeY, mark) {
     }
 }
 
+/*GET THE VALUE OF THE RADIOBUTTON*/
 function getRadioVal(form, name) {
     var val;
     // get list of radio buttons with specified name
@@ -92,16 +91,3 @@ function getRadioVal(form, name) {
     }
     return val; // return value of checked radio or undefined if none checked
 }
-
-// function getValueTitle() {
-//     var inputs = document.getElementsByTagName('input'),
-//         commandValue = null;
-//     for (var i = 0; i < inputs.length; i++) {
-//         if (inputs[i].name === "titre") {
-//             commandValue = inputs[i].value; // get the element value
-//         }
-//     }
-//     alert (commandValue); // show the value
-//     return false; // prevent default form action
-//
-// }

@@ -3,19 +3,18 @@
     padding-right: 50px;
 }
 
+/*----------------------------TABLE----------------------------*/
 th, td {
     padding: 20px;
     text-align: left;
     overflow-wrap: break-word;
     max-width: 5px;
-
 }
 
 tr {
     display: block;
     position: relative;
-    background-color: #58B19F;
-
+    background-color: #95afc0;
 }
 
 tbody {
@@ -24,39 +23,26 @@ tbody {
     width: 100%;
     height: 400px;
 }
+
 td, th {
     min-width: 9.5em;
-
 }
 
+#total{
+    padding-top: 20px;
+    font-size: 18px;
+    font-weight:bold ;
+}
 
+.single-graph canvas{
+    max-width: 120px !important;
+}
 
-
+/*----------------------------VEGA-EMBED----------------------------*/
 .vega-embed {
     position: relative;
     padding-right: 38px;
 }
-
-/*.vega-embed .vega-actions-wrapper {*/
-    /*display: inline-flex;*/
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*right: 0;*/
-    /*padding: 15px;*/
-    /*z-index: 1000;*/
-    /*opacity: 0.2;*/
-    /*background: #B71C1C ;*/
-    /*box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);*/
-    /*color: #1b1e23;*/
-    /*border: 1px solid #aaa;*/
-    /*border-radius: 999px;*/
-    /*transition: opacity 0.4s ease-in;*/
-/*}*/
-
-/*.vega-embed:hover .vega-actions-wrapper {*/
-    /*transition: opacity 0.2s ease;*/
-    /*opacity: 1;*/
-/*}*/
 
 .vega-embed .vega-actions {
     position: absolute;
@@ -80,10 +66,6 @@ td, th {
     box-shadow: none;
 }
 
-/*.vega-embed .vega-actions-wrapper:hover .vega-actions {*/
-    /*display: flex;*/
-/*}*/
-
 .vega-embed .vega-actions a {
     padding: 8px 16px;
     font-family: sans-serif;
@@ -94,23 +76,10 @@ td, th {
     text-decoration: none;
 }
 
-/*.vega-embed .vega-actions a:hover {*/
-    /*background-color: #f7f7f9;*/
-    /*color: #1b1e23;*/
-/*}*/
+/*----------------------------DIV WRAPPER WITH GRAPH----------------------------*/
 .row .col.s6 {
     width: 49%;
 }
-
-.resize-graph{
-    overflow: auto;
-    height: 350px;
-    border-style: solid;
-    border-width: thin;
-    border-color: lightslategray;
-    margin: 2px 2px 2px 2px;
-}
-
 
 #wrapper {
 
@@ -122,10 +91,13 @@ td, th {
     overflow-x:hidden;
 }
 
-#total{
-    padding-top: 20px;
-    font-size: 18px;
-    font-weight:bold ;
+.resize-graph{
+    overflow: auto;
+    height: 350px;
+    border-style: solid;
+    border-width: thin;
+    border-color: lightslategray;
+    margin: 2px 2px 2px 2px;
 }
 
 #graph-title{
@@ -138,25 +110,16 @@ td, th {
     padding-top: 20px;
 }
 
-.single-graph canvas{
-    max-width: 120px !important;
-}
-
-
-#icon-edit{
-    color:black;
-    cursor: pointer;
-}
-
+/*******HOVER SELECTION********/
 .hover:hover {
-    background-color: red;
+    background-color: #f6e58d;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50px 50px;
     background-image:url("/images/icon/check.svg");
 }
 
-
+/*----------------------------WAITING ICON----------------------------*/
 #cover {
     position: fixed;
     height: 100%;
@@ -177,4 +140,23 @@ td, th {
 @-webkit-keyframes spin {
     0%  {-webkit-transform: rotate(0deg);}
     100% {-webkit-transform: rotate(360deg);}
+}
+
+/**********BUTTON**********/
+.btn-size{
+    width: 160px;
+}
+
+
+/*----------------------------COLOR OF DROPDOWN----------------------------*/
+.dropdown-content li>a, .dropdown-content li>span {
+    font-size: 16px;
+    color: black;
+    display: block;
+    line-height: 22px;
+    padding: 14px 16px;
+}
+
+.select-wrapper input.select-dropdown:focus {
+    border-bottom: 1px solid black;
 }

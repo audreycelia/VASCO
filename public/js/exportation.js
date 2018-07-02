@@ -1,10 +1,8 @@
 $(document).ready(function () {
-
     exportedGraphVegaLite();
-
-
 });
 
+/*DISPLAY THE GRAPH*/
 function exportedGraphVegaLite() {
 
     //variables

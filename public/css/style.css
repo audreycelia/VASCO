@@ -1,8 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #DADFE1;
-
-
   position: relative;
   margin: 0;
   padding-bottom: 6rem;
@@ -14,14 +12,7 @@ html {
   box-sizing: border-box;
 }
 
-
-
-
-
-
-
 h1{
-  font-family: "Hiragino Sans";
   font-size: 40px;
 }
 

@@ -1,5 +1,4 @@
 #exportation-container {
-
     width: 60%;
     background-color: white;
     left: -1px;
@@ -16,7 +15,7 @@
 
 
 
-
+/*----------------------------VEGA-EMBED----------------------------*/
 /*Style of the writting*/
 .vega-embed .vega-actions a {
     padding: 8px 16px;
@@ -31,7 +30,7 @@
 
 }
 
-/*hover when on the button*/
+/*hover on the button*/
 .vega-embed .vega-actions a:hover {
 background-color: #1b1e23;
 }
