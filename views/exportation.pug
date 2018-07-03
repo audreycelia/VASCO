@@ -17,6 +17,9 @@ block content
                 div.col.s9#exportation-container
                     div#title-modif= keyExportedGraph.items[0]._spec.encodings[0].field + ' / ' + keyExportedGraph.items[0]._spec.encodings[1].field
                     div#exportedGraph
+            div.row
+                div.col.s12
+                    a.btn.waves-effect.waves-light.right(href="/importation") Je recommence !
 
     script(src="/js/exportation.js", type="text/javascript")
 
