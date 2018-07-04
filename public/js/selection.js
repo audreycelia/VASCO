@@ -34,7 +34,10 @@ function vegaLite() {
                     "type": test.encodings[1].type
                 },
                 "tooltip":
-                    {"field": fieldX, "type": test.encodings[0].type}
+                    {
+                        "field": fieldX,
+                        "type": test.encodings[0].type
+                    }
 
             }
         };

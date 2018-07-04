@@ -5,10 +5,11 @@
 
 /*----------------------------TABLE----------------------------*/
 th, td {
-    padding: 20px;
-    text-align: left;
+    padding: 10px;
+    text-align: center;
     overflow-wrap: break-word;
-    max-width: 5px;
+    max-width: 10px;
+    min-height: 5.7em;
 }
 
 tr {
@@ -17,15 +18,15 @@ tr {
     background-color: #95afc0;
 }
 
+/*scrollbar*/
 tbody {
     display: block;
     overflow: auto;
-    width: 100%;
     height: 400px;
 }
 
 td, th {
-    min-width: 9.5em;
+    min-width: 8em;
 }
 
 #total{
@@ -36,6 +37,11 @@ td, th {
 
 .single-graph canvas{
     max-width: 120px !important;
+}
+
+/*responsive*/
+table.responsive-table td {
+    min-height: 12em;
 }
 
 /*----------------------------VEGA-EMBED----------------------------*/

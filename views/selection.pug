@@ -24,22 +24,22 @@ block content
                 button.btn.waves-effect-waves-light(type="submit", name="action", onclick="applyFilter()") Chercher
             div.col.s6
                 div#selection-table
-                        table.highlight.responsive-table
-                            thead
+                    table.highlight.responsive-table
+                        thead
+                            tr
+                                th Dimensions
+                                th Type
+                                th Somme
+                                th Moyenne
+                                th Visuel
+                        tbody
+                            each dim,i in keyDim
                                 tr
-                                    th Dimensions
-                                    th Type
-                                    th Somme
-                                    th Moyenne
-                                    th Visuel
-                            tbody
-                                each dim,i in keyDim
-                                    tr
-                                        td= dim[0]
-                                        td= dim[1]
-                                        td= dim[2]
-                                        td= dim[3]
-                                        td.single-graph(id="single"+i)
+                                    td= dim[0]
+                                    td= dim[1]
+                                    td= dim[2]
+                                    td= dim[3]
+                                    td.single-graph(id="single"+i)
                 div#total Nombre de ligne :&nbsp;
                     = keyDim.length
             div.col.s6
