@@ -26,20 +26,20 @@ block content
                 div#selection-table
                     table.highlight.responsive-table
                         thead
-                            tr
-                                th Dimensions
-                                th Type
-                                th Somme
-                                th Moyenne
-                                th Visuel
-                        tbody
+                            tr.tr-style
+                                th.th-style Dimensions
+                                th.th-style Type
+                                th.th-style Somme
+                                th.th-style Moyenne
+                                th.th-style Visuel
+                        tbody.tbody-style
                             each dim,i in keyDim
-                                tr
-                                    td= dim[0]
-                                    td= dim[1]
-                                    td= dim[2]
-                                    td= dim[3]
-                                    td.single-graph(id="single"+i)
+                                tr.tr-style
+                                    td.td-style= dim[0]
+                                    td.td-style= dim[1]
+                                    td.td-style= dim[2]
+                                    td.td-style= dim[3]
+                                    td.td-style.single-graph(id="single"+i)
                 div#total Nombre de ligne :&nbsp;
                     = keyDim.length
             div.col.s6

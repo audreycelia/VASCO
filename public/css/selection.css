@@ -4,30 +4,29 @@
 }
 
 /*----------------------------TABLE----------------------------*/
-th, td {
+.th-style, .td-style {
     padding: 10px;
     text-align: center;
     overflow-wrap: break-word;
     max-width: 10px;
     min-height: 5.7em;
+    min-width: 8em;
 }
 
-tr {
+.tr-style {
     display: block;
     position: relative;
     background-color: #95afc0;
 }
 
 /*scrollbar*/
-tbody {
+.tbody-style {
     display: block;
     overflow: auto;
     height: 400px;
 }
 
-td, th {
-    min-width: 8em;
-}
+
 
 #total{
     padding-top: 20px;

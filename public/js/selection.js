@@ -33,12 +33,10 @@ function vegaLite() {
                     "field": fieldY,
                     "type": test.encodings[1].type
                 },
-                "tooltip":
-                    {
-                        "field": fieldX,
-                        "type": test.encodings[0].type
-                    }
-
+                "tooltip": [
+                    {"field": fieldX, "type": test.encodings[0].type},
+                    {"field": fieldY, "type": test.encodings[1].type}
+                ]
             }
         };
         // Embed the visualization in the container with id `vis`
