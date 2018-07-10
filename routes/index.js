@@ -306,26 +306,25 @@ function getDetailsFile(){
         //display the element of line
         for(var i= 0;i<file.length;i++){
 
-            var value =file[i][y];
+            var value = file[i][y];
 
             //check number
             if (!isNaN(value)){
+                var parseValue = parseFloat(value);
                 var type = "quantitative";
-                sum+=parseFloat(value);
+                sum+=parseValue;
                 avg = sum/file.length;
 
-                if(value < min){
-                    min = value;
+                if(parseValue < min){
+                    min = parseValue;
                 }
-                if (value >max){
-                    max = value;
+                if (parseValue > max){
+                    max = parseValue;
                 }
 
             } else{
                 var type = "ordinal";
             }
-
-
 
 
             var length =file[0].length;
