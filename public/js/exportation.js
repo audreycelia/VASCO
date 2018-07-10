@@ -1,5 +1,11 @@
 $(document).ready(function () {
     exportedGraphVegaLite();
+
+
+    //hide button "open in vega editor"
+    $('div.vega-actions').each(function(){
+        $(this).children("a:nth-child(4)").remove();
+    });
 });
 
 /*DISPLAY THE GRAPH*/
@@ -40,9 +46,6 @@ function exportedGraphVegaLite() {
 
     // Embed the visualization in the container with id
    vegaEmbed("#exportedGraph", vlSpec, {theme:design});
-
-
 }
-
 
 

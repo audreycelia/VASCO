@@ -223,7 +223,6 @@ function convertCsvToJson() {
     let json = csvToJson.getJsonFromCsv('./uploads/temp.csv');
 
 
-    console.log(json)
     return json;
 
 }
@@ -300,58 +299,68 @@ function getDetailsFile(){
         tabCsv[y][0] = arrayOfHeader[y];
 
         var sum=0;
-        var avg=0 ;
-
+        var avg=0;
+        var min=1000000000000;
+        var max=0;
 
         //display the element of line
         for(var i= 0;i<file.length;i++){
 
             var value =file[i][y];
+
             //check number
             if (!isNaN(value)){
                 var type = "quantitative";
                 sum+=parseFloat(value);
                 avg = sum/file.length;
 
+                if(value < min){
+                    min = value;
+                }
+                if (value >max){
+                    max = value;
+                }
+
             } else{
                 var type = "ordinal";
-
-
             }
-            var length =file[0].length;
 
+
+
+
+            var length =file[0].length;
         }
 
+
         tabCsv[y][1] = type;
+        tabCsv[y][4] = min;
+        tabCsv[y][5] = max;
+
+
 
         //Sum if decimal number show only two decimals
         var temp = (sum - Math.floor(sum)) !== 0;
-
         if (temp){
             //take only two decimals
             var truncatedSum = Math.floor(sum * 100) / 100;
-            tabCsv[y][2] = truncatedSum;
+            tabCsv[y][2] = Intl.NumberFormat().format(truncatedSum);
         }
         else {
-            tabCsv[y][2] = sum;
+            tabCsv[y][2] = Intl.NumberFormat().format(sum);
+
         }
 
         //Avg if decimal number show only two decimals
         var tempAvg = (avg - Math.floor(avg)) !== 0;
-
         if (tempAvg){
             //take only two decimals
             var truncatedAvg = Math.floor(avg * 100) / 100;
-            tabCsv[y][3] = truncatedAvg;
+            tabCsv[y][3] = Intl.NumberFormat().format(truncatedAvg);
         }
         else {
-            tabCsv[y][3] = avg;
+            tabCsv[y][3] = Intl.NumberFormat().format(avg);
         }
-
-
-
     }
-
 
     return tabCsv;
 

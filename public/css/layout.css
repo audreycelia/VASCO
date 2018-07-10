@@ -1,3 +1,13 @@
+.img {
+    background-image: url("../images/whiteOpacity.jpg") ;
+    background-position: center center;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
+    background-color: #999;
+    opacity: 0.9;
+}
+
 
 /*----------------------------NAV----------------------------*/
 
@@ -17,10 +27,7 @@
 
 /*----------------------------FOOTER----------------------------*/
 
-/*https://flatuicolors.com/palette/us
-https://flatuicolors.com/palette/au*/
 .color-footer{
-    /*background-color: #6C7A89;*/
     background-color: #535c68;
     color: #f6e58d;
 }

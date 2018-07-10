@@ -12,51 +12,52 @@ block content
     div#selection
         div.container
             h1 Selection de la visualisation
-        div.row.container-selection
-            div.col.s6
-            div.input-field.col.s4
-                select#select-filter
-                    option(value="", disabled, selected) Choix de filtre
-                    option(value="all") Tout
-                    each filter in keyDim
-                        option=filter[0]
-            div.col.s2
-                button.btn.waves-effect-waves-light(type="submit", name="action", onclick="applyFilter()") Chercher
-            div.col.s6
-                div#selection-table
-                    table.highlight.responsive-table
+            div.row
+                div.col.s12
+                    table.responsive-table#resum-table
                         thead
                             tr.tr-style
                                 th.th-style Dimensions
                                 th.th-style Type
                                 th.th-style Somme
                                 th.th-style Moyenne
-                                th.th-style Visuel
+                                th.th-style Minimum
+                                th.th-style Maximum
+                                th.th-style Aperçu
                         tbody.tbody-style
                             each dim,i in keyDim
                                 tr.tr-style
                                     td.td-style= dim[0]
-                                    td.td-style= dim[1]
-                                    td.td-style= dim[2]
-                                    td.td-style= dim[3]
+                                    td.td-style= dim[1] === "ordinal" ? "qualitatif" : "quantitatif"
+                                    td.td-style= dim[2] === "0" ? "-" : dim[2]
+                                    td.td-style= dim[3] === "0" ? "-" : dim[3]
+                                    td.td-style= dim[4]
+                                    td.td-style= dim[5]
                                     td.td-style.single-graph(id="single"+i)
-                div#total Nombre de ligne :&nbsp;
-                    = keyDim.length
-            div.col.s6
-                div.row#wrapper
-                    each result,index in keyResult
-                        each item in result.items
-                            div.col.s6.resize-graph.hover(id="graphFilter"+index)
-                                div#graph-title= item._spec.encodings[0].field + " / " + item._spec.encodings[1].field
-                                div(id="vis"+index, onclick=`selectGraph('${item._spec.encodings[0].field}','${item._spec.encodings[1].field}','${item._spec.encodings[0].type}','${item._spec.encodings[1].type}','${item._spec.mark}')`).graph-padding
-        div.row
-            div.col.s6
-            div.col.s2
-                a.btn.waves-effect.waves-light.right.btn-size(href="/importation") Retour
-                    i.material-icons.left keyboard_arrow_left
-            div.col.s2
-                a.btn.waves-effect.waves-light.right.btn-size(href="/modification") Suivant
-                    i.material-icons.right keyboard_arrow_right
+                div.col.s12
+                    div#total Nombre de lignes :&nbsp;
+                        = keyDim.length
+                div.col.s12
+                    div.col.s8
+                        h6#list-h6 Liste des graphiques
+                    div.input-field.col.s4
+                        select#select-filter
+                            option(value="", disabled, selected) Afficher les graphiques selon ...
+                            option(value="all") Tout
+                            each filter in keyDim
+                                option=filter[0]
+                div.col.s12
+                    div.row#wrapper
+                        each result,index in keyResult
+                            each item in result.items
+                                div.col.s6.resize-graph.hover(id="graphFilter"+index)
+                                    div#graph-title= item._spec.encodings[0].field + " / " + item._spec.encodings[1].field
+                                    div(id="vis"+index, onclick=`selectGraph('${item._spec.encodings[0].field}','${item._spec.encodings[1].field}','${item._spec.encodings[0].type}','${item._spec.encodings[1].type}','${item._spec.mark}')`).graph-padding
+
+            a.btn.waves-effect.waves-light.right.btn-size(href="/modification") Suivant
+                i.material-icons.right keyboard_arrow_right
+            a.btn.waves-effect.waves-light.right.btn-size(href="/importation") Retour
+                i.material-icons.left keyboard_arrow_left
     div#cover
         i.material-icons.rotate.large autorenew
 

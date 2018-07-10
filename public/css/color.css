@@ -3,6 +3,7 @@
 .btn{
     background-color: #95afc0;
     color: black;
+    opacity: 0.8;
 }
 
 .btn:hover{

@@ -11,6 +11,8 @@ html
 
 
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js")
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js', type="text/javascript")
+        //script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js', type="text/javascript")
         script(src="/js/lib/materialize.min.js", type="text/javascript")
         script(src="https://cdn.jsdelivr.net/npm/vega@3")
         script(src="https://cdn.jsdelivr.net/npm/vega-lite@2.4.3")
@@ -18,12 +20,13 @@ html
 
 
         script(src="/js/layout.js", type="text/javascript")
+        script(src="/js/validate.js", type="text/javascript")
 
 
         block extra-headers
 
 
-    body#home-layout
+    body#home-layout.img
         nav.nav-top
             div.container
                 div.nav-wrapper
@@ -51,7 +54,6 @@ html
                     a(href="/modification").ignore-click MODIFICATION
                 li
                     a(href="/exportation").ignore-click EXPORTATION
-
     block content
     footer.page-footar.color-footer
         div.container © Copyright 2018 projet VASCO

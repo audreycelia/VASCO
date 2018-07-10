@@ -1,48 +1,51 @@
-.container-selection{
-    padding-left: 50px;
-    padding-right: 50px;
-}
+
 
 /*----------------------------TABLE----------------------------*/
-.th-style, .td-style {
-    padding: 10px;
-    text-align: center;
-    overflow-wrap: break-word;
-    max-width: 10px;
-    min-height: 5.7em;
-    min-width: 8em;
-}
-
-.tr-style {
-    display: block;
-    position: relative;
-    background-color: #95afc0;
-}
-
-/*scrollbar*/
-.tbody-style {
-    display: block;
-    overflow: auto;
-    height: 400px;
-}
-
-
-
 #total{
-    padding-top: 20px;
+    padding: 10px 0 10px 10px;
     font-size: 18px;
     font-weight:bold ;
+    text-align: left;
+    background: lightslategray;
+    opacity: 0.5;
+    color:#fff;
 }
 
+tbody{
+    background: whitesmoke;
+}
+
+
+thead {
+    background: lightslategray;
+    opacity: 0.5;
+    color:#fff;
+}
+
+
+/*size of the graph */
 .single-graph canvas{
     max-width: 120px !important;
+    max-height: 200px !important;
+}
+table.scroll tbody,
+table.scroll thead { display: block; }
+
+table.scroll tbody {
+    overflow-y: auto;
+    overflow-x: auto;
+    max-height: 450px;
 }
 
-/*responsive*/
-table.responsive-table td {
-    min-height: 12em;
+table.scroll tr {
+    display: flex;
+    padding-left: 10px;
 }
 
+table.scroll tr > td {
+    flex-grow: 1;
+    flex-basis: 0;
+}
 /*----------------------------VEGA-EMBED----------------------------*/
 .vega-embed {
     position: relative;
@@ -55,7 +58,6 @@ table.responsive-table td {
     right: 0;
     display: none;
     flex-direction: column;
-
     padding-bottom: 8px;
     padding-top: 8px;
     border-radius: 4px;
@@ -82,12 +84,14 @@ table.responsive-table td {
 }
 
 /*----------------------------DIV WRAPPER WITH GRAPH----------------------------*/
+
+
 .row .col.s6 {
-    width: 49%;
+    width: 33%;
+
 }
 
 #wrapper {
-
     height: 500px;
     background-color: white;
     left: -1px;
@@ -99,10 +103,7 @@ table.responsive-table td {
 .resize-graph{
     overflow: auto;
     height: 350px;
-    border-style: solid;
-    border-width: thin;
-    border-color: lightslategray;
-    margin: 2px 2px 2px 2px;
+
 }
 
 #graph-title{
@@ -124,6 +125,11 @@ table.responsive-table td {
     background-image:url("/images/icon/check.svg");
 }
 
+/***********Title**************/
+#list-h6{
+    padding-top: 30px ;
+    font-weight: bold;
+}
 /*----------------------------WAITING ICON----------------------------*/
 #cover {
     position: fixed;
@@ -150,7 +156,9 @@ table.responsive-table td {
 /**********BUTTON**********/
 .btn-size{
     width: 160px;
+    margin-left: 70px;
 }
+
 
 
 /*----------------------------COLOR OF DROPDOWN----------------------------*/
