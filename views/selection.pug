@@ -6,6 +6,8 @@ block extra-headers
     script.
         var results = !{JSON.stringify(keyResult).replace(/<\//g, '<\\/')}
         var dataFile = !{JSON.stringify(keyDim).replace(/<\//g, '<\\/')}
+        var fileLength = "#{JSON.stringify(keyLength)}";
+        fileLength = JSON.parse(fileLength.replace(/(&quot;)/g, '"').replace(/\r/g, ""));
 
 block content
 
@@ -16,27 +18,27 @@ block content
                 div.col.s12
                     table.responsive-table#resum-table
                         thead
-                            tr.tr-style
-                                th.th-style Dimensions
-                                th.th-style Type
-                                th.th-style Somme
-                                th.th-style Moyenne
-                                th.th-style Minimum
-                                th.th-style Maximum
-                                th.th-style Aperçu
-                        tbody.tbody-style
+                            tr
+                                th Dimensions
+                                th Type
+                                th Somme
+                                th Moyenne
+                                th Minimum
+                                th Maximum
+                                th Aperçu
+                        tbody
                             each dim,i in keyDim
-                                tr.tr-style
-                                    td.td-style= dim[0]
-                                    td.td-style= dim[1] === "ordinal" ? "qualitatif" : "quantitatif"
-                                    td.td-style= dim[2] === "0" ? "-" : dim[2]
-                                    td.td-style= dim[3] === "0" ? "-" : dim[3]
-                                    td.td-style= dim[4] === "1000000000000" ? "0" : dim[4]
-                                    td.td-style= dim[5] === "1000000000000" ? "0" : dim[5]
-                                    td.td-style.single-graph(id="single"+i)
+                                tr
+                                    td= dim[0]
+                                    td= dim[1] === "ordinal" ? "qualitatif" : "quantitatif"
+                                    td= dim[2]
+                                    td= dim[3]
+                                    td= dim[4]
+                                    td= dim[5]
+                                    td.single-graph(id="single"+i)
                 div.col.s12
                     div#total Nombre de lignes :&nbsp;
-                        = keyDim.length
+                        = keyLength
                 div.col.s12
                     div.col.s8
                         h6#list-h6 Liste des graphiques

@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var session = require('express-session');
 var indexRouter = require('./routes/index');
 
 var app = express();
@@ -19,7 +19,24 @@ app.use(cookieParser());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// setup session
+app.use(session({
+    secret: 'secretKey',
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}));
+
+// create session variable
+app.use(function (req, res, next) {
+    res.locals.session = req.session;
+    next();
+});
+
+
 app.use('/', indexRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -36,5 +53,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
 
 module.exports = app;

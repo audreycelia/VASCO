@@ -12,27 +12,28 @@ $(document).ready(function () {
 function exportedGraphVegaLite() {
 
     //variables
-    var test = result.items[0]._spec;
-    var fieldX = test.encodings[0].field;
-    var fieldY = test.encodings[1].field;
+    var data = result.items[0]._spec.data.url;
+    var path = result.items[0]._spec;
+    var fieldX = path.encodings[0].field;
+    var fieldY = path.encodings[1].field;
 
     //Vega-lite structure
     vlSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-        "data": {"url": "uploads/temp.csv"},
-        "mark": test.mark,
+        "data": {"url": data},
+        "mark": path.mark,
         "encoding": {
             "x": {
                 "field": fieldX,
-                "type": test.encodings[0].type
+                "type": path.encodings[0].type
             },
             "y": {
                 "field": fieldY,
-                "type": test.encodings[1].type
+                "type": path.encodings[1].type
             },
             "tooltip": [
-                {"field": fieldX, "type": test.encodings[0].type},
-                {"field": fieldY, "type": test.encodings[1].type}
+                {"field": fieldX, "type": path.encodings[0].type},
+                {"field": fieldY, "type": path.encodings[1].type}
             ]
         },
 

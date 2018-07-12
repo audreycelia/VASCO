@@ -23,7 +23,7 @@ function tableResponsive() {
 
     $table.addClass('scroll');
 
-// Adjust the width of thead cells when window resizes
+    // Adjust the width of thead cells when window resizes
     $(window).resize(function () {
 
         // Get the tbody columns width array
@@ -46,23 +46,25 @@ function vegaLite() {
 
     for (var i = 0; i < results.length; i++) {
 
+        //variable
         var result = results[i];
-        var test = result.items[0]._spec;
-        var fieldX = test.encodings[0].field;
-        var fieldY = test.encodings[1].field;
+        var path = result.items[0]._spec;
+        var dataFile = result.items[0]._spec.data.url;
+        var fieldX = path.encodings[0].field;
+        var fieldY = path.encodings[1].field;
 
         vlSpec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-            "data": {"url": "uploads/temp.csv"},
-            "mark": test.mark,
+            "data": {"url": dataFile},
+            "mark": path.mark,
             "encoding": {
                 "x": {
                     "field": fieldX,
-                    "type": test.encodings[0].type,
+                    "type": path.encodings[0].type,
                 },
                 "y": {
                     "field": fieldY,
-                    "type": test.encodings[1].type
+                    "type": path.encodings[1].type
                 }
             }
         };
@@ -75,31 +77,36 @@ function vegaLite() {
 function singleGraph() {
 
     for (var i = 0; i < dataFile.length; i++) {
+        //loop to get the data
+        for (var y = 0; y < results.length; y++) {
 
-        var dim = dataFile[i];
-        var value = dim[0];
-        var type = dim[1];
+            //variable
+            var result = results[i];
+            var data = result.items[0]._spec.data.url;
+            var dim = dataFile[i];
+            var value = dim[0];
+            var type = dim[1];
 
-        singleSpec = {
-            "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-            "data": {"url": "uploads/temp.csv"},
-            "mark": "bar",
-            "encoding": {
-                "x": {
-                    "bin": true,
-                    "field": value,
-                    "type": type
-                },
-                "y": {
-                    "aggregate": "count",
-                    "type": "quantitative"
+            singleSpec = {
+                "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+                "data": {"url": data},
+                "mark": "bar",
+                "encoding": {
+                    "x": {
+                        "bin": true,
+                        "field": value,
+                        "type": type
+                    },
+                    "y": {
+                        "aggregate": "count",
+                        "type": "quantitative"
+                    }
                 }
-            }
-        };
-        // Embed the visualization in the container with id `vis`
-        vegaEmbed("#single" + i, singleSpec);
+            };
+            // Embed the visualization in the container with id `vis`
+            vegaEmbed("#single" + i, singleSpec);
 
-
+        }
     }
 }
 

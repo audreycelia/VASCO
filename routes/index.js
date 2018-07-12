@@ -7,8 +7,7 @@ var csvToJson = require('convert-csv-to-json');
 var tooltip = require('vega-tooltip');
 
 
-
-
+var name;
 
 /*store the import file in the uploads directory*/
 var storage = multer.diskStorage({
@@ -16,8 +15,9 @@ var storage = multer.diskStorage({
         cb(null, 'uploads');
     },
     filename: function (req, file, cb) {
-        //cb(null, Date.now()+'-' +file.originalname);
-        cb(null, 'temp.csv');
+        //var name = Date.now()+'-' +file.originalname;
+        name =  "temp" + Date.now() + ".csv";
+        cb(null, name);
     }
 });
 var upload = multer({storage: storage});
@@ -31,16 +31,17 @@ router.get('/', function(req, res, next) {
 
 /* GET importation. */
 router.get('/importation', function (req, res, next) {
-
-
     res.render('importation');
-
 });
 
 /* POST file importation. */
 router.post('/importation', upload.single('file'),function (req, res, next) {
+
     //store the name of the file imported
-    var filename=req.body.importfile;
+    //var filename=req.body.importfile;
+
+    var uploadedFile = name;
+    req.session.filename = uploadedFile;
 
     //for the button "next"
     res.redirect('/selection');
@@ -50,12 +51,11 @@ router.post('/importation', upload.single('file'),function (req, res, next) {
 /* GET selection. */
 router.get('/selection', async function (req, res, next) {
 
-
      //Build a data schema.
-    var json = convertCsvToJson();
+    var json = convertCsvToJson(req.session.filename);
     var schema = cql.schema.build(json);
 
-    var dims = await getAllDimension();
+    var dims = await getAllDimension(req.session.filename);
 
     var results = [];
 
@@ -65,7 +65,10 @@ router.get('/selection', async function (req, res, next) {
         var VegaGraph = {
             "spec": {
                 "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-                "data": {"url": "uploads/temp.csv", "format": {type: "csv"}},
+                "data": {
+                    "url": "uploads/" + req.session.filename,
+                    "format": {type: "csv"}
+                    },
                 "mark": "?",
                 "encodings": [
                     {
@@ -86,10 +89,17 @@ router.get('/selection', async function (req, res, next) {
         var result = output.result; // recommendation result
         results.push(result);
     }
-    var dataFile = getDetailsFile();
+    var dataFile = getDetailsFile(req.session.filename);
+
+    //get number of line
+    var file = fs.readFileSync("./uploads/" + req.session.filename, 'utf8');
+    file = file.split('\n');
+    file.splice(0,1);
+
+    var fileLength = file.length;
 
     //Send to the client side
-    res.render('selection' ,{keyDim: dataFile, keyResult: results});
+    res.render('selection' ,{keyDim: dataFile, keyResult: results, keyLength: fileLength});
 
 });
 
@@ -101,7 +111,7 @@ router.get('/selection', async function (req, res, next) {
 router.get('/modification', function (req, res, next) {
 
     //Build a data schema.
-    var json = convertCsvToJson();
+    var json = convertCsvToJson(req.session.filename);
     var schema = cql.schema.build(json);
 
     var mark = req.query.mark;
@@ -115,7 +125,7 @@ router.get('/modification', function (req, res, next) {
         var VegaGraph = {
             "spec": {
                 "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-                "data": {"url": "uploads/temp.csv", "format": {type: "csv"}},
+                "data": {"url": "uploads/" + req.session.filename, "format": {type: "csv"}},
                 "mark": mark,
                 "encodings": [
                     {
@@ -146,7 +156,7 @@ router.get('/modification', function (req, res, next) {
 router.get('/exportation', function (req, res, next) {
 
     //Build a data schema.
-    var json = convertCsvToJson();
+    var json = convertCsvToJson(req.session.filename);
     var schema = cql.schema.build(json);
 
     var mark = req.query.mark;
@@ -160,7 +170,7 @@ router.get('/exportation', function (req, res, next) {
     var VegaGraph = {
         "spec": {
             "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-            "data": {"url": "uploads/temp.csv", "format": {type: "csv"}},
+            "data": {"url": "uploads/" + req.session.filename, "format": {type: "csv"}},
             "mark": mark,
             "encodings": [
                 {
@@ -185,8 +195,8 @@ router.get('/exportation', function (req, res, next) {
 
 
 //take only one data in my csv file
-function getOneData(randNum) {
-    var file = fs.readFileSync('./uploads/temp.csv', 'utf8');
+function getOneData(randNum, filename) {
+    var file = fs.readFileSync("./uploads/" + filename, 'utf8');
     //split into a tab
     file = file.split('\n');
 
@@ -196,18 +206,9 @@ function getOneData(randNum) {
    return line[randNum];
 }
 
-function getNameOfAllDim(){
-    var file = fs.readFileSync('./uploads/temp.csv', 'utf8');
-    //split into a tab
-    file = file.split('\n');
-    //take only the line 1
-    var line = file[0].split(',');
-    return line;
-}
 
-
-function convertCsvToJson() {
-    let fileInputName = './uploads/temp.csv';
+function convertCsvToJson(filename) {
+    let fileInputName = "./uploads/" + filename;
     let content = fs.readFileSync(fileInputName, 'utf8');
     content=content.replace(/\\r/g,"");
     fs.writeFileSync(fileInputName,content);
@@ -220,7 +221,7 @@ function convertCsvToJson() {
     var test=  csvToJson.fieldDelimiter(';').getJsonFromCsv(fileInputName);
 
 
-    let json = csvToJson.getJsonFromCsv('./uploads/temp.csv');
+    let json = csvToJson.getJsonFromCsv("./uploads/" + filename);
 
 
     return json;
@@ -229,9 +230,9 @@ function convertCsvToJson() {
 
 
 
-function checkTypeGraph(randNum) {
+function checkTypeGraph(randNum, filename) {
 
-    var val = getOneData(randNum);
+    var val = getOneData(randNum, filename);
 
     if (isNaN(val)){
         var type = "ordinal";
@@ -241,9 +242,9 @@ function checkTypeGraph(randNum) {
     return type;
 }
 
-async function getAllDimension() {
+async function getAllDimension(filename) {
 
-    var file = fs.readFileSync('./uploads/temp.csv', 'utf8');
+    var file = fs.readFileSync("./uploads/" + filename, 'utf8');
     //split into a tab
     file = file.split('\n');
     //take only the header
@@ -260,8 +261,8 @@ async function getAllDimension() {
                 var dim = {
                     axeX : arrayOfHeader[x],
                     axeY :arrayOfHeader[y],
-                    typeX: checkTypeGraph(x),
-                    typeY: checkTypeGraph(y)
+                    typeX: checkTypeGraph(x, filename),
+                    typeY: checkTypeGraph(y, filename)
                 };
 
             //add in the array
@@ -271,9 +272,10 @@ async function getAllDimension() {
     return dims;
 }
 
-function getDetailsFile(){
 
-    var file = fs.readFileSync('./uploads/temp.csv', 'utf8');
+function getDetailsFile(filename){
+
+    var file = fs.readFileSync("./uploads/" + filename, 'utf8');
     //split into a tab
     //tab
     file = file.split('\n');
@@ -287,6 +289,7 @@ function getDetailsFile(){
     for(var i= 0;i<file.length;i++){
         file[i] =file[i].split(',');
     }
+
 
     //display the element of line
     var tabCsv =[];
@@ -312,8 +315,9 @@ function getDetailsFile(){
             if (!isNaN(value)){
                 var parseValue = parseFloat(value);
                 var type = "quantitative";
-                sum+=parseValue;
+                sum = sum + parseValue;
                 avg = sum/file.length;
+
 
                 if(parseValue < min){
                     min = parseValue;
@@ -321,19 +325,22 @@ function getDetailsFile(){
                 if (parseValue > max){
                     max = parseValue;
                 }
-
-            } else{
-                var type = "ordinal";
             }
+            else if (isNaN(value))
+            {
+                var type = "ordinal";
+                sum="-";
+                avg="-";
+                min="-";
+                max="-";
 
-
-            var length =file[0].length;
+            }
         }
-
-
         tabCsv[y][1] = type;
         tabCsv[y][4] = min;
         tabCsv[y][5] = max;
+
+        // lance
 
 
 
@@ -348,6 +355,7 @@ function getDetailsFile(){
             tabCsv[y][2] = Intl.NumberFormat().format(sum);
 
         }
+
 
         //Avg if decimal number show only two decimals
         var tempAvg = (avg - Math.floor(avg)) !== 0;
@@ -364,5 +372,6 @@ function getDetailsFile(){
     return tabCsv;
 
 }
+
 
 module.exports = router;
