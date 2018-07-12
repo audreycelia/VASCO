@@ -34,29 +34,6 @@ fs.readdir(directory, function(err, files) {
     });
 });
 
-// fs.readdir(directory, (err, files) => {
-//
-//         if (err) throw err;
-//         var now = new Date();
-//         var thirtyMinutes = 60000;
-//         var endTime = now + thirtyMinutes;
-//
-//         if (now < endTime) {
-//             for (const file of files) {
-//                 fs.unlink(path.join(directory, file), err => {
-//                     if (err) throw err;
-//                 });
-//             }
-//         }
-//
-// });
-//
-// fs.unlink('./test/temp.csv',function(err){
-//     if(err) return console.log(err);
-//     console.log('file deleted successfully');
-// });
-
-
 /*store the import file in the uploads directory*/
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
