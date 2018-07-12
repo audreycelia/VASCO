@@ -5,9 +5,57 @@ var fs = require('fs');
 var cql = require('compassql');
 var csvToJson = require('convert-csv-to-json');
 var tooltip = require('vega-tooltip');
+var path = require('path');
+const rimraf = require('rimraf');
 
 
 var name;
+
+//delete file inside uploads after one day
+const directory = 'uploads';
+fs.readdir(directory, function(err, files) {
+    files.forEach(function(file, index) {
+        fs.stat(path.join(directory, file), function(err, stat) {
+            var endTime, now;
+            if (err) {
+                return console.error(err);
+            }
+            now = new Date().getTime();
+            endTime = new Date(stat.ctime).getTime() + 86400000;
+            if (now > endTime) {
+                return rimraf(path.join(directory, file), function(err) {
+                    if (err) {
+                        return console.error(err);
+                    }
+                    console.log('successfully deleted');
+                });
+            }
+        });
+    });
+});
+
+// fs.readdir(directory, (err, files) => {
+//
+//         if (err) throw err;
+//         var now = new Date();
+//         var thirtyMinutes = 60000;
+//         var endTime = now + thirtyMinutes;
+//
+//         if (now < endTime) {
+//             for (const file of files) {
+//                 fs.unlink(path.join(directory, file), err => {
+//                     if (err) throw err;
+//                 });
+//             }
+//         }
+//
+// });
+//
+// fs.unlink('./test/temp.csv',function(err){
+//     if(err) return console.log(err);
+//     console.log('file deleted successfully');
+// });
+
 
 /*store the import file in the uploads directory*/
 var storage = multer.diskStorage({
