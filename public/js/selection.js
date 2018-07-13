@@ -75,10 +75,7 @@ function vegaLite() {
 
 /*DISPLAY HISTOGRAMME IN THE RESUME TAB*/
 function singleGraph() {
-
     for (var i = 0; i < dataFile.length; i++) {
-        //loop to get the data
-        for (var y = 0; y < results.length; y++) {
 
             //variable
             var result = results[i];
@@ -105,8 +102,6 @@ function singleGraph() {
             };
             // Embed the visualization in the container with id `vis`
             vegaEmbed("#single" + i, singleSpec);
-
-        }
     }
 }
 

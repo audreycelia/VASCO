@@ -9,8 +9,6 @@ var path = require('path');
 const rimraf = require('rimraf');
 
 
-var name;
-
 //delete file inside uploads after one day
 const directory = 'uploads';
 fs.readdir(directory, function(err, files) {
@@ -34,7 +32,9 @@ fs.readdir(directory, function(err, files) {
     });
 });
 
+
 /*store the import file in the uploads directory*/
+var name;
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads');
@@ -114,7 +114,7 @@ router.get('/selection', async function (req, res, next) {
         var result = output.result; // recommendation result
         results.push(result);
     }
-    var dataFile = getDetailsFile(req.session.filename);
+    var dataFile = await getDetailsFile(req.session.filename);
 
     //get number of line
     var file = fs.readFileSync("./uploads/" + req.session.filename, 'utf8');
@@ -127,8 +127,6 @@ router.get('/selection', async function (req, res, next) {
     res.render('selection' ,{keyDim: dataFile, keyResult: results, keyLength: fileLength});
 
 });
-
-
 
 
 
@@ -238,19 +236,15 @@ function convertCsvToJson(filename) {
     content=content.replace(/\\r/g,"");
     fs.writeFileSync(fileInputName,content);
 
-
     //print number as number and not in string
     csvToJson.formatValueByType().getJsonFromCsv(fileInputName);
 
     //as default delimiter is ; so we set as ,
     var test=  csvToJson.fieldDelimiter(';').getJsonFromCsv(fileInputName);
 
-
     let json = csvToJson.getJsonFromCsv("./uploads/" + filename);
 
-
     return json;
-
 }
 
 
@@ -298,22 +292,34 @@ async function getAllDimension(filename) {
 }
 
 
-function getDetailsFile(filename){
+async function getDetailsFile(filename){
 
     var file = fs.readFileSync("./uploads/" + filename, 'utf8');
     //split into a tab
     //tab
     file = file.split('\n');
 
+
+    //replace empty val by 0
+    for(var f= 0;f<file.length;f++) {
+            file[f] = file[f].replace(',,', ',0,');
+    }
+
+
     //display name of headers
     var arrayOfHeader = file[0].split(',');
 
     file.splice(0,1);
 
+
+
     //put my csv in array
     for(var i= 0;i<file.length;i++){
         file[i] =file[i].split(',');
+
     }
+
+
 
 
     //display the element of line
@@ -336,37 +342,46 @@ function getDetailsFile(filename){
 
             var value = file[i][y];
 
-            //check number
-            if (!isNaN(value)){
-                var parseValue = parseFloat(value);
-                var type = "quantitative";
-                sum = sum + parseValue;
-                avg = sum/file.length;
+                //check number
+                if (!isNaN(value)){
+                    var parseValue = parseFloat(value);
+
+                    var type = "quantitative";
+                    sum += parseValue;
+                    avg = sum/file.length;
 
 
-                if(parseValue < min){
-                    min = parseValue;
+                    if(parseValue < min){
+                        min = parseValue;
+                    }
+                    if (parseValue > max){
+                        max = parseValue;
+                    }
                 }
-                if (parseValue > max){
-                    max = parseValue;
+                else if (isNaN(value))
+                {
+                    var type = "ordinal";
+                    sum =0;
+                    avg=0;
                 }
-            }
-            else if (isNaN(value))
-            {
-                var type = "ordinal";
-                sum="-";
-                avg="-";
-                min="-";
-                max="-";
 
-            }
+                //min and max
+                if (!isNaN(value)){
+
+                    if(value < min){
+                        min = value;
+                    }
+                    if (value > max){
+                        max = value;
+                    }
+                }
+
+
         }
         tabCsv[y][1] = type;
-        tabCsv[y][4] = min;
-        tabCsv[y][5] = max;
-
-        // lance
-
+        //Intl.NumberFormat().format --> add seperate to number
+        tabCsv[y][4] = Intl.NumberFormat().format(min);
+        tabCsv[y][5] = Intl.NumberFormat().format(max);
 
 
         //Sum if decimal number show only two decimals
@@ -393,9 +408,7 @@ function getDetailsFile(filename){
             tabCsv[y][3] = Intl.NumberFormat().format(avg);
         }
     }
-
     return tabCsv;
-
 }
 
 

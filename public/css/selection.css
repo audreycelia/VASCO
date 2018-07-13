@@ -27,7 +27,7 @@ thead {
 /*size of the graph */
 .single-graph canvas{
     max-width: 120px !important;
-    max-height: 200px !important;
+    max-height: 120px !important;
 }
 table.scroll tbody,
 table.scroll thead { display: block; }
@@ -127,9 +127,21 @@ table.scroll tr > td {
 }
 
 /***********Title**************/
-#list-h6{
+#list-graph-title{
+    padding-top: 10px ;
+    font-weight: bold;
+}
+#list-graph-title-dropdown{
     padding-top: 30px ;
     font-weight: bold;
+    font-size: 16px;
+}
+
+#list-graph-text{
+    font-style: italic;
+    font-size: 12px;
+    padding-bottom: 10px;
+
 }
 /*----------------------------WAITING ICON----------------------------*/
 #cover {

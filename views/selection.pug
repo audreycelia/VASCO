@@ -31,20 +31,23 @@ block content
                                 tr
                                     td= dim[0]
                                     td= dim[1] === "ordinal" ? "qualitatif" : "quantitatif"
-                                    td= dim[2]
-                                    td= dim[3]
-                                    td= dim[4]
-                                    td= dim[5]
+                                    td= dim[2] === '0' ? '-' : dim[2]
+                                    td= dim[3] === '0' ? '-' : dim[3]
+                                    td= dim[4] === '1,000,000,000,000' ? '-' : dim[4]
+                                    td= dim[5] === '0' ? '-' : dim[5]
                                     td.single-graph(id="single"+i)
                 div.col.s12
                     div#total Nombre de lignes :&nbsp;
                         = keyLength
                 div.col.s12
-                    div.col.s8
-                        h6#list-h6 Liste des graphiques
+                    div.col.s4
+                        h5#list-graph-title Liste des graphiques
+                        p#list-graph-text selectionner un graphique pour le modifier
+                    div.col.s4
+                        div#list-graph-title-dropdown.right Afficher les graphiques selon ...
                     div.input-field.col.s4
                         select#select-filter
-                            option(value="", disabled, selected) Afficher les graphiques selon ...
+                            option(value="", disabled, selected) le nom des dimensions
                             option(value="all") Tout
                             each filter in keyDim
                                 option=filter[0]
