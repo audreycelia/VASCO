@@ -1,7 +1,6 @@
 /*----------------------------GRAPH----------------------------*/
 #modification-container {
-
-    width: 60%;
+    width: 75%;
     background-color: white;
     left: -1px;
     overflow:scroll;
@@ -23,7 +22,6 @@
     right: 0;
     display: none;
     flex-direction: column;
-
     padding-bottom: 8px;
     padding-top: 8px;
     border-radius: 4px;
@@ -42,7 +40,27 @@
     border: 2px solid #f6e58d;
 }
 
+
+#modification-explain{
+    background-color: white;
+    width: 90%;
+}
+
+ul:not(.browser-default) {
+    padding-left: 30px;
+}
+ul li{
+    list-style-type: square !important;
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+
+h6{
+    font-weight: bold;
+}
+
 /********BUTTON*************/
 .btn-size{
+    margin-top: 50px;
     width: 160px;
 }

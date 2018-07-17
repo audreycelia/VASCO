@@ -5,14 +5,30 @@ $(document).ready(function () {
         $("#cover").hide();
     });
 
-    vegaLite();
+    $('.tabs').tabs();
+
+    //vegaLite();
     singleGraph();
     $('select').formSelect();
     applyFilter();
 
     tableResponsive();
 
+
+
+    $('.graph-bin').hover(
+        function() {
+            $(this).animate({ 'zoom': 2 }, 400);
+        },
+        function() {
+            $(this).animate({ 'zoom': 1 }, 400);
+        });
+
+
 });
+
+
+
 
 /*RESPONSIVE RESUM TABLE*/
 function tableResponsive() {

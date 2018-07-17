@@ -9,9 +9,9 @@ block content
 
     div#modification
         div.container
-            h1 Modification de la visualisation
+
             div.row
-                form#form-modif.col.s4
+                form#form-modif.col.s3
                     div.row
                         div.col.s12
                             h6 Design du graphique :
@@ -40,7 +40,14 @@ block content
                                 label(for="vox")
                                     input#vox(type="radio", name="input", value="vox")
                                     span Vox
-                div#modification-container.col.s8
+                        div#modification-explain.col.s12
+                            h6 Le saviez-vous ?
+                            ul
+                                li Allez voir ce qu'il se passe en mettant le curseur sur les données du graphique
+                                li Plus les points sont foncés, plus il y a des données similaires
+
+
+                div#modification-container.col.s9
                     div.row
                         div.col.s12
                            div#title-modif= keySelectedGraph.items[0]._spec.encodings[0].field +' / '+keySelectedGraph.items[0]._spec.encodings[1].field
@@ -51,7 +58,7 @@ block content
                 a.btn.waves-effect.waves-light.right.btn-size(href="/selection") Retour
                     i.material-icons.left keyboard_arrow_left
             div.col.s2
-                a.btn.waves-effect.waves-light.right.btn-size(onclick=`modifGraph('${keySelectedGraph.items[0]._spec.encodings[0].field}','${keySelectedGraph.items[0]._spec.encodings[1].field}','${keySelectedGraph.items[0]._spec.encodings[0].type}','${keySelectedGraph.items[0]._spec.encodings[1].type}','${keySelectedGraph.items[0]._spec.mark}')`).right#btn-export Suivant
+                a.btn.waves-effect.waves-light.right.btn-size(onclick=`modifGraph('${keySelectedGraph.items[0]._spec.encodings[0].field}','${keySelectedGraph.items[0]._spec.encodings[1].field}','${keySelectedGraph.items[0]._spec.encodings[0].type}','${keySelectedGraph.items[0]._spec.encodings[1].type}','${keySelectedGraph.items[0]._spec.mark}')`).right#btn-export Exporter
                     i.material-icons.right keyboard_arrow_right
 
     script(src="/js/modification.js", type="text/javascript")

@@ -63,11 +63,9 @@ router.get('/importation', function (req, res, next) {
 router.post('/importation', upload.single('file'),function (req, res, next) {
 
     //store the name of the file imported
-    //var filename=req.body.importfile;
 
-    var uploadedFile = name;
-    req.session.filename = uploadedFile;
-
+        var uploadedFile = name;
+        req.session.filename = uploadedFile;
     //for the button "next"
     res.redirect('/selection');
 });
@@ -230,6 +228,7 @@ function getOneData(randNum, filename) {
 }
 
 
+
 function convertCsvToJson(filename) {
     let fileInputName = "./uploads/" + filename;
     let content = fs.readFileSync(fileInputName, 'utf8');
@@ -311,16 +310,10 @@ async function getDetailsFile(filename){
 
     file.splice(0,1);
 
-
-
     //put my csv in array
     for(var i= 0;i<file.length;i++){
         file[i] =file[i].split(',');
-
     }
-
-
-
 
     //display the element of line
     var tabCsv =[];
@@ -340,30 +333,53 @@ async function getDetailsFile(filename){
         //display the element of line
         for(var i= 0;i<file.length;i++){
 
+            // var value = file[i][y];
+            //
+            //     //check number
+            //     if (!isNaN(value)){
+            //         var parseValue = parseFloat(value);
+            //
+            //         var type = "quantitative";
+            //         sum += parseValue;
+            //         avg = sum/file.length;
+            //
+            //
+            //         if(parseValue < min){
+            //             min = parseValue;
+            //         }
+            //         if (parseValue > max){
+            //             max = parseValue;
+            //         }
+            //     }
+            //     else if (isNaN(value))
+            //     {
+            //         var type = "ordinal";
+            //         sum =0;
+            //         avg=0;
+            //     }
+
+
             var value = file[i][y];
 
-                //check number
-                if (!isNaN(value)){
-                    var parseValue = parseFloat(value);
-
-                    var type = "quantitative";
-                    sum += parseValue;
-                    avg = sum/file.length;
+            var type = "ordinal";
 
 
-                    if(parseValue < min){
-                        min = parseValue;
-                    }
-                    if (parseValue > max){
-                        max = parseValue;
-                    }
+            //check number
+            if (!isNaN(value)){
+                var parseValue = parseFloat(value);
+
+                type = "quantitative";
+                sum += parseValue;
+                avg = sum/file.length;
+
+
+                if(parseValue < min){
+                    min = parseValue;
                 }
-                else if (isNaN(value))
-                {
-                    var type = "ordinal";
-                    sum =0;
-                    avg=0;
+                if (parseValue > max){
+                    max = parseValue;
                 }
+            }
 
                 //min and max
                 if (!isNaN(value)){
@@ -379,6 +395,8 @@ async function getDetailsFile(filename){
 
         }
         tabCsv[y][1] = type;
+        console.log(tabCsv[y][1])
+
         //Intl.NumberFormat().format --> add seperate to number
         tabCsv[y][4] = Intl.NumberFormat().format(min);
         tabCsv[y][5] = Intl.NumberFormat().format(max);

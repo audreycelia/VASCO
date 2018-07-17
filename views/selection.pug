@@ -3,6 +3,7 @@ extends layout
 
 block extra-headers
     link(rel='stylesheet', href='/css/selection.css')
+
     script.
         var results = !{JSON.stringify(keyResult).replace(/<\//g, '<\\/')}
         var dataFile = !{JSON.stringify(keyDim).replace(/<\//g, '<\\/')}
@@ -13,10 +14,24 @@ block content
 
     div#selection
         div.container
-            h1 Selection de la visualisation
             div.row
                 div.col.s12
-                    table.responsive-table#resum-table
+                    ul.tabs.tabs-fixed-width.tab-demo.z-depth-1.tabs-selection
+                        li.tab.col.s6
+                            a(href="#resume-tab")
+                                span
+                                    i.material-icons search
+                                | &nbsp; Synthèse du fichier importé
+                        li.tab.col.s6
+                            a(href="#list-tab")
+                                span
+                                    i.material-icons show_chart
+                                | &nbsp; Liste des graphiques
+
+                div#resume-tab.col.s12
+                    div#total Nombre de lignes du fichier importé :&nbsp;
+                        = keyLength
+                    table.responsive-table
                         thead
                             tr
                                 th Dimensions
@@ -35,36 +50,34 @@ block content
                                     td= dim[3] === '0' ? '-' : dim[3]
                                     td= dim[4] === '1,000,000,000,000' ? '-' : dim[4]
                                     td= dim[5] === '0' ? '-' : dim[5]
-                                    td.single-graph(id="single"+i)
-                div.col.s12
-                    div#total Nombre de lignes :&nbsp;
-                        = keyLength
-                div.col.s12
+                                    td.graph-bin.single-graph(id="single"+i)
+
+
+                div#list-tab.col.s12
                     div.col.s4
-                        h5#list-graph-title Liste des graphiques
-                        p#list-graph-text selectionner un graphique pour le modifier
-                    div.col.s4
-                        div#list-graph-title-dropdown.right Afficher les graphiques selon ...
-                    div.input-field.col.s4
+                        div#list-graph-title-dropdown Je trie les données selon ...
+                    div.input-field.col.s8
                         select#select-filter
-                            option(value="", disabled, selected) le nom des dimensions
+                            option(value="", disabled, selected) le nom des dimensions (nom des colonnes)
                             option(value="all") Tout
                             each filter in keyDim
                                 option=filter[0]
-                div.col.s12
-                    div.row#wrapper
-                        each result,index in keyResult
-                            each item in result.items
-                                div.col.s6.resize-graph.hover(id="graphFilter"+index)
-                                    div#graph-title= item._spec.encodings[0].field + " / " + item._spec.encodings[1].field
-                                    div(id="vis"+index, onclick=`selectGraph('${item._spec.encodings[0].field}','${item._spec.encodings[1].field}','${item._spec.encodings[0].type}','${item._spec.encodings[1].type}','${item._spec.mark}')`).graph-padding
+                        p#list-graph-text.right selectionner un graphique pour le modifier
+                    div.col.s12
+                        div.row#wrapper
+                            each result,index in keyResult
+                                each item in result.items
+                                    div.col.s6.resize-graph.hover(id="graphFilter"+index)
+                                        div#graph-title= item._spec.encodings[0].field + " / " + item._spec.encodings[1].field
+                                        div(id="vis"+index, onclick=`selectGraph('${item._spec.encodings[0].field}','${item._spec.encodings[1].field}','${item._spec.encodings[0].type}','${item._spec.encodings[1].type}','${item._spec.mark}')`).graph-padding
 
-            a.btn.waves-effect.waves-light.right.btn-size(href="/modification") Suivant
-                i.material-icons.right keyboard_arrow_right
-            a.btn.waves-effect.waves-light.right.btn-size(href="/importation") Retour
-                i.material-icons.left keyboard_arrow_left
+                a.btn.waves-effect.waves-light.right.btn-size(href="/modification") Suivant
+                    i.material-icons.right keyboard_arrow_right
+                a.btn.waves-effect.waves-light.right.btn-size(href="/importation") Retour
+                    i.material-icons.left keyboard_arrow_left
     div#cover
         i.material-icons.rotate.large autorenew
+
 
     script(src="/js/selection.js", type="text/javascript")
 

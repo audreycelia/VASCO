@@ -1,14 +1,39 @@
+/*----------------------------Tabs----------------------------*/
+
+.tabs-selection{
+    background-color: #535c68;
+    margin-top: 40px;
+    text-align: justify;}
+
+/*selected tab color*/
+.tabs .tab a:hover, .tabs .tab a.active {
+    color: #f6e58d;
+}
+
+/*no-selected tab color*/
+.tabs .tab a {
+    color: #f6e58d;
+}
+
+/*hover when selected*/
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    background-color: rgba(251, 241, 182, 0.3);
+}
+
+/*active selector line*/
+.tabs .indicator {
+    height: 4px;
+    background-color: #f6e58d;
+}
+
 
 
 /*----------------------------TABLE----------------------------*/
 #total{
-    padding: 10px 0 10px 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     font-size: 18px;
     font-weight:bold ;
-    text-align: left;
-    background: lightslategray;
-    opacity: 0.5;
-    color:#fff;
 }
 
 tbody{
@@ -35,7 +60,8 @@ table.scroll thead { display: block; }
 table.scroll tbody {
     overflow-y: auto;
     overflow-x: auto;
-    max-height: 450px;
+    max-height: 300px;
+
 }
 
 table.scroll tr {
@@ -86,25 +112,21 @@ table.scroll tr > td {
 
 /*----------------------------DIV WRAPPER WITH GRAPH----------------------------*/
 
-
-.row .col.s6 {
-    width: 33%;
-
-}
-
 #wrapper {
-    height: 500px;
+    height: 700px;
     background-color: white;
     left: -1px;
     padding: 10px  10px 10px 10px;
     overflow:scroll;
     overflow-x:hidden;
+
 }
+
 
 .resize-graph{
     overflow: auto;
-    height: 350px;
-
+    height: 450px;
+    text-align: center;
 }
 
 #graph-title{
@@ -127,10 +149,7 @@ table.scroll tr > td {
 }
 
 /***********Title**************/
-#list-graph-title{
-    padding-top: 10px ;
-    font-weight: bold;
-}
+
 #list-graph-title-dropdown{
     padding-top: 30px ;
     font-weight: bold;
@@ -141,6 +160,7 @@ table.scroll tr > td {
     font-style: italic;
     font-size: 12px;
     padding-bottom: 10px;
+    padding-top: 20px;
 
 }
 /*----------------------------WAITING ICON----------------------------*/
@@ -170,6 +190,7 @@ table.scroll tr > td {
 .btn-size{
     width: 160px;
     margin-left: 70px;
+    margin-top: 40px;
 }
 
 
