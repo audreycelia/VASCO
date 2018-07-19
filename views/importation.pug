@@ -16,9 +16,8 @@ block content
                                 i.material-icons file_upload
                                 input#importfile(type="file", name="file", accept=".csv", data-position="left", data-tooltip="Taille maximum 20 Ko").tooltipped
                             div.file-path-wrapper
-                            input.file-path.validate(name="importfile",type="text")#file-imported
+                            input.file-path.validate(name="importfile",type="text", placeholder="Insérer le fichier csv ici")#file-imported
                         div.col.s12
-                            a#btn.btn.waves-effect.waves-light hello
                             button#btnNext.btn.waves-effect.waves-light.right(type="submit") Suivant
                                 i.material-icons.right send
                 div.col.s6.right#explain-type

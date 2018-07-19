@@ -6,6 +6,7 @@
     overflow:scroll;
     padding: 70px 0 0 20px;
     text-align: center;
+    min-height:480px;
 }
 
 #title-modif{

@@ -3,13 +3,6 @@ $(document).ready(function () {
     $('textarea#textarea-import').characterCounter();
 });
 
-// $('#btn').click(function () {
-//
-//     $('#file-imported').val('uploads/cereal.csv');
-//     $('#btnNext').submit();
-//
-// });
-
 var uploadField = document.getElementById("importfile");
 
 uploadField.onchange = function() {

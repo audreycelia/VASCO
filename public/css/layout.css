@@ -1,3 +1,4 @@
+/*----------------------------BACKGROUND----------------------------*/
 .img {
     background-image: url("../images/whiteOpacity.jpg") ;
     background-position: center center;
@@ -42,16 +43,20 @@ footer{
 
 }
 
-/*****ARROWS*****/
+
+/*----------------------------ARROWS----------------------------*/
 
 /*responsive*/
-.arrows { white-space: normal; }
+.arrows {
+    white-space: normal;
+
+}
 /*add the arrow in horizontal*/
 .arrows li {
     display: inline-block;
     line-height: 26px;
     margin: 40px 9px 0 -10px;
-    padding: 0 30px;
+    padding: 0 18px;
     position: relative;
 }
 

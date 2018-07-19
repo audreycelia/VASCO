@@ -3,7 +3,12 @@
 .tabs-selection{
     background-color: #535c68;
     margin-top: 40px;
-    text-align: justify;}
+    text-align: justify;
+}
+
+.tabs-selection .tabs .tab a:hover, .tabs .tab a.active{
+    background-color: rgba(251, 241, 182, 0.3);
+}
 
 /*selected tab color*/
 .tabs .tab a:hover, .tabs .tab a.active {
@@ -119,7 +124,7 @@ table.scroll tr > td {
     padding: 10px  10px 10px 10px;
     overflow:scroll;
     overflow-x:hidden;
-
+    margin-bottom: -20px;
 }
 
 
@@ -193,7 +198,10 @@ table.scroll tr > td {
     margin-top: 40px;
 }
 
-
+/**********ICON**********/
+i.right {
+    margin-left: -10px;
+}
 
 /*----------------------------COLOR OF DROPDOWN----------------------------*/
 .dropdown-content li>a, .dropdown-content li>span {

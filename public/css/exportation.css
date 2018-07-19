@@ -1,3 +1,4 @@
+/*----------------------------DIV WITH GRAPH----------------------------*/
 #exportation-container {
     width: 100%;
     background-color: white;
@@ -9,6 +10,7 @@
     margin-bottom: 30px;
 }
 
+/*Title*/
 #title-modif{
     padding-bottom: 30px;
     font-size: 18px;
@@ -41,7 +43,10 @@ background-color: #1b1e23;
     padding-top: 50px;
 }
 
-
+/*hide button "open in vega editor"*/
+.vega-actions a:nth-child(4){
+    display: none;
+}
 
 
 

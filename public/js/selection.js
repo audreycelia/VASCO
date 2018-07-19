@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     $('.tabs').tabs();
 
-    //vegaLite();
+    vegaLite();
     singleGraph();
     $('select').formSelect();
     applyFilter();
@@ -15,7 +15,7 @@ $(document).ready(function () {
     tableResponsive();
 
 
-
+    //zoom on histogram when hover
     $('.graph-bin').hover(
         function() {
             $(this).animate({ 'zoom': 2 }, 400);
@@ -23,8 +23,6 @@ $(document).ready(function () {
         function() {
             $(this).animate({ 'zoom': 1 }, 400);
         });
-
-
 });
 
 
@@ -129,7 +127,6 @@ function applyFilter() {
         var value = selector[selector.selectedIndex].value;
         createGraphFilter(value);
     });
-
 }
 
 /*DISPLAY FILTERED GRAPH*/

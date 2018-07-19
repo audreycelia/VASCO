@@ -54,9 +54,8 @@ block content
 
 
                 div#list-tab.col.s12
-                    div.col.s4
-                        div#list-graph-title-dropdown Je trie les données selon ...
-                    div.input-field.col.s8
+                    div#list-graph-title-dropdown Je trie les données selon ...
+                    div.input-field
                         select#select-filter
                             option(value="", disabled, selected) le nom des dimensions (nom des colonnes)
                             option(value="all") Tout
@@ -64,17 +63,16 @@ block content
                                 option=filter[0]
                         p#list-graph-text.right selectionner un graphique pour le modifier
                     div.col.s12
+                        i.material-icons.right.small keyboard_arrow_down
                         div.row#wrapper
                             each result,index in keyResult
                                 each item in result.items
                                     div.col.s6.resize-graph.hover(id="graphFilter"+index)
                                         div#graph-title= item._spec.encodings[0].field + " / " + item._spec.encodings[1].field
                                         div(id="vis"+index, onclick=`selectGraph('${item._spec.encodings[0].field}','${item._spec.encodings[1].field}','${item._spec.encodings[0].type}','${item._spec.encodings[1].type}','${item._spec.mark}')`).graph-padding
-
-                a.btn.waves-effect.waves-light.right.btn-size(href="/modification") Suivant
-                    i.material-icons.right keyboard_arrow_right
-                a.btn.waves-effect.waves-light.right.btn-size(href="/importation") Retour
-                    i.material-icons.left keyboard_arrow_left
+                        i.material-icons.right.small keyboard_arrow_up
+                    a.btn.waves-effect.waves-light.right.btn-size(href="/importation") Retour
+                        i.material-icons.left keyboard_arrow_left
     div#cover
         i.material-icons.rotate.large autorenew
 

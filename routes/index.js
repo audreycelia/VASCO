@@ -40,7 +40,6 @@ var storage = multer.diskStorage({
         cb(null, 'uploads');
     },
     filename: function (req, file, cb) {
-        //var name = Date.now()+'-' +file.originalname;
         name =  "temp" + Date.now() + ".csv";
         cb(null, name);
     }
@@ -232,6 +231,7 @@ function getOneData(randNum, filename) {
 function convertCsvToJson(filename) {
     let fileInputName = "./uploads/" + filename;
     let content = fs.readFileSync(fileInputName, 'utf8');
+
     content=content.replace(/\\r/g,"");
     fs.writeFileSync(fileInputName,content);
 
@@ -333,32 +333,6 @@ async function getDetailsFile(filename){
         //display the element of line
         for(var i= 0;i<file.length;i++){
 
-            // var value = file[i][y];
-            //
-            //     //check number
-            //     if (!isNaN(value)){
-            //         var parseValue = parseFloat(value);
-            //
-            //         var type = "quantitative";
-            //         sum += parseValue;
-            //         avg = sum/file.length;
-            //
-            //
-            //         if(parseValue < min){
-            //             min = parseValue;
-            //         }
-            //         if (parseValue > max){
-            //             max = parseValue;
-            //         }
-            //     }
-            //     else if (isNaN(value))
-            //     {
-            //         var type = "ordinal";
-            //         sum =0;
-            //         avg=0;
-            //     }
-
-
             var value = file[i][y];
 
             var type = "ordinal";
@@ -391,11 +365,8 @@ async function getDetailsFile(filename){
                         max = value;
                     }
                 }
-
-
         }
         tabCsv[y][1] = type;
-        console.log(tabCsv[y][1])
 
         //Intl.NumberFormat().format --> add seperate to number
         tabCsv[y][4] = Intl.NumberFormat().format(min);
