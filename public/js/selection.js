@@ -90,7 +90,6 @@ function vegaLite() {
 /*DISPLAY HISTOGRAMME IN THE RESUME TAB*/
 function singleGraph() {
     for (var i = 0; i < dataFile.length; i++) {
-
             //variable
             var result = results[i];
             var data = result.items[0]._spec.data.url;
